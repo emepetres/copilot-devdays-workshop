@@ -28,6 +28,12 @@ El agente (con sus skills y herramientas) que los asistentes construyen durante 
 
 _Evitar_: repo a revisar (nombrar la app: Tailspin Toys).
 
+## Inconsistencia sembrada
+
+Error introducido a propósito en el material que el **workshop** añade a Tailspin Toys (diagramas, documentos) para que el **Engineering Reviewer** lo detecte al contrastarlo con el código o los requisitos.
+
+_Evitar_: bug, error (sin más: no es un fallo del código, sino una discrepancia deliberada entre fuentes).
+
 ## Flujo de Matt Pocock
 
 La metodología de trabajo con agentes que proponen las skills de https://github.com/mattpocock/skills (afinar la idea mediante preguntas, convertirla en issues, implementar con TDD...).
