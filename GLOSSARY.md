@@ -22,6 +22,12 @@ Bloque autocontenido del **workshop** con un objetivo de aprendizaje propio. Equ
 
 **Lección** avanzada y opcional, situada al final, pensada para hacerse en casa. Aloja lo de mayor complejidad que no encaja con un público junior dentro de las 3 h.
 
+## Engineering Reviewer
+
+El agente (con sus skills y herramientas) que los asistentes construyen durante las **lecciones** nuevas del **workshop** para analizar conjuntamente la documentación y el código de la app del **workshop base** y detectar inconsistencias entre requisitos, arquitectura e implementación.
+
+_Evitar_: repo a revisar (nombrar la app: Tailspin Toys).
+
 ## Flujo de Matt Pocock
 
 La metodología de trabajo con agentes que proponen las skills de https://github.com/mattpocock/skills (afinar la idea mediante preguntas, convertirla en issues, implementar con TDD...).
