@@ -114,11 +114,11 @@ Todas se contrastan con el código de la plantilla, que es determinista.
 | 1 | Diagrama | Caja "REST API (Flask)" llamada en runtime; el sitio es estático (`output: 'static'`) |
 | 2 | Diagrama | PostgreSQL en lugar de SQLite |
 | 3 | Diagrama | Tabla `Backers` inexistente en `db/schema.ts` |
-| 4 | PDF de requisitos | Requisito funcional ↔ código (p. ej. "un juego puede pertenecer a varias categorías") |
-| 5 | PDF de requisitos | Requisito no funcional ↔ código (p. ej. "el catálogo se actualiza en tiempo real") |
-| 6 | Escaneado (acta) | Decisión del acta ↔ código |
+| 4 | PDF de requisitos | RF-03: "un juego puede pertenecer a varias categorías"; `games.categoryId` es una sola clave ajena |
+| 5 | PDF de requisitos | RNF-01: "el catálogo se actualiza en tiempo real"; el sitio es estático (`output: 'static'`) |
+| 6 | Escaneado (acta) | D2: la valoración se muestra de 1 a 10 sin estrellas; el código sigue en 0–5 con estrellas |
 
-El texto concreto de las inconsistencias 4–6 se escribe al redactar la lección 6.
+Los documentos son `docs/requisitos.pdf` y `docs/acta-reunion.pdf` de la plantilla, con el Markdown del plan B en `docs/reviews/_docling/`. Sus generadores están en `docs/assets/` de este repo, y la clave de respuestas para la solución plegable de la lección 6, con la ubicación y la evidencia de cada inconsistencia, en `docs/inconsistencias-sembradas.md`.
 
 ## 7. Lección 0: prerrequisitos
 
