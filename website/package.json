@@ -1,0 +1,25 @@
+{
+  "name": "copilot-devdays-workshop-site",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/markdown-remark": "7.3.2",
+    "@astrojs/starlight": "^0.42.6",
+    "astro": "^7.3.8",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "remark-github-admonitions-to-directives": "^2.1.0"
+  }
+}
