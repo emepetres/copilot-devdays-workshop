@@ -41,7 +41,7 @@ El workshop tiene más contenido del que cabe en 3 h, a propósito. Todo el mate
 - 📺 **En directo:** por YouTube
 - 🎟 **Entrada:** [gratuita, con registro previo](https://luma.com/h8739h67)
 
-## 🚀 ¿Empezamos?
+## 🚀 ¿Te lo vas a perder?
 
 **Una tarde, mucho GitHub Copilot, muchos agentes y 🤖 un Engineering Reviewer hecho por ti.**
 
