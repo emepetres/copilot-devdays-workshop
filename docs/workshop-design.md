@@ -25,7 +25,7 @@ La pista **VS Code** de *Real-world development* (`github-samples/copilot-worksh
 - **Se descartan** las lecciones 4–6 y Foundry.
 - **Fuente de texto en español** para traducir: la pista *Copilot app* y *First steps — VS Code*.
 
-Material en Markdown por lección, visible directamente en GitHub. **Sin GitHub Pages en esta edición**, aunque la base use Starlight. Queda como posible mejora posterior.
+Material en Markdown por lección (`lessons/`), visible directamente en GitHub. Como en la base, un sitio Astro + Starlight (`website/`) lo publica en **GitHub Pages** (<https://emepetres.github.io/copilot-devdays-workshop/>), solo en español. Ver `AUTHORING.md`.
 
 ## 4. Índice de lecciones
 
