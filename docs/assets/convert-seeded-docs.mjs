@@ -60,8 +60,15 @@ const server = spawn(SERVER, SERVER_ARGS, {
 });
 
 server.on("error", (err) => {
-  console.error(`❌ No se pudo arrancar ${SERVER}: ${err.message}`);
+  const hint = err.code === "ENOENT" ? ` Instálalo como en la lección 0: uv tool install "docling-mcp[local]==3.3.0".` : "";
+  console.error(`❌ No se pudo arrancar ${SERVER}: ${err.message}.${hint}`);
   process.exit(1);
+});
+
+server.on("exit", (code) => {
+  for (const { reject } of pending.values()) {
+    reject(new Error(`${SERVER} se ha cerrado inesperadamente (código ${code}).`));
+  }
 });
 
 createInterface({ input: server.stdout }).on("line", (line) => {

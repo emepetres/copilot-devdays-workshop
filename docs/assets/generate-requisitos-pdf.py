@@ -78,19 +78,18 @@ OUT_OF_SCOPE = [
 ]
 
 
+# Bold header row on a light blue background, with a thin grid.
+TABLE_STYLE = [
+    ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#dbe4f0")),
+    ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#7a8699")),
+]
+
+
 def requirements_table(rows: list[tuple[str, str]], styles) -> Table:
     data = [["ID", "Requisito"]] + [[rid, Paragraph(text, styles["BodyText"])] for rid, text in rows]
     table = Table(data, colWidths=[2 * cm, 14 * cm], repeatRows=1)
-    table.setStyle(
-        TableStyle(
-            [
-                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#dbe4f0")),
-                ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#7a8699")),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-            ]
-        )
-    )
+    table.setStyle(TableStyle(TABLE_STYLE + [("VALIGN", (0, 0), (-1, -1), "TOP")]))
     return table
 
 
@@ -100,15 +99,7 @@ def story() -> list:
     h2 = styles["Heading2"]
 
     history = Table(HISTORY, colWidths=[2 * cm, 3 * cm, 11 * cm])
-    history.setStyle(
-        TableStyle(
-            [
-                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#dbe4f0")),
-                ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#7a8699")),
-            ]
-        )
-    )
+    history.setStyle(TableStyle(TABLE_STYLE))
 
     return [
         Paragraph(f"Tailspin Toys · {TITLE}", styles["Title"]),

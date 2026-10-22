@@ -15,6 +15,7 @@ La evidencia se cita por fichero y símbolo, no por línea, porque las lecciones
 El resto del contenido coincide con el código a propósito. Si el informe marca algo de esto, es un falso positivo:
 
 - **Requisitos**: RF-01, RF-04 y RF-06 a RF-09; RNF-02 a RNF-06. El apartado 5 deja fuera de alcance la búsqueda, el filtrado, la ordenación y la paginación, así que el filtrado y la ordenación de las lecciones 2 y 3 no contradicen el documento.
+- **Código de las lecciones 2 y 3**: el informe puede decir que el código implementa funciones que el apartado 5 deja fuera de la versión 1.2. Es razonable, pero no es una de las inconsistencias sembradas. RF-01 (orden alfabético por título) solo se mantiene si la ordenación de la lección 3 conserva A–Z como orden por defecto. La evidencia de la inconsistencia 5 supone que el filtrado sigue siendo estático, como pide `astro.instructions.md`, y no pasa a SSR.
 - **Acta**: D1 (se mantiene SQLite) y D3 (el botón «Support This Game» no tramita aportaciones) coinciden con el código. La acción de actualizar la especificación con D2 indica que la decisión es posterior al PDF de requisitos, que no fija ninguna escala de valoración.
 
 ## Regenerar los documentos

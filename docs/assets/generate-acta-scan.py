@@ -26,49 +26,49 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen.canvas import Canvas
 
 FONTS = Path(reportlab.__file__).parent / "fonts"
-REGULAR = ImageFont.truetype(str(FONTS / "Vera.ttf"), 30)
-BOLD = ImageFont.truetype(str(FONTS / "VeraBd.ttf"), 30)
-TITLE = ImageFont.truetype(str(FONTS / "VeraBd.ttf"), 46)
+REGULAR_FONT = ImageFont.truetype(str(FONTS / "Vera.ttf"), 30)
+BOLD_FONT = ImageFont.truetype(str(FONTS / "VeraBd.ttf"), 30)
+TITLE_FONT = ImageFont.truetype(str(FONTS / "VeraBd.ttf"), 46)
 DPI = 200
 MARGIN = 170
 
 # (font, text, indent in px). An empty text is a blank line. D2 is seeded inconsistency 6.
 LINES = [
-    (TITLE, "ACTA DE REUNIÓN", 0),
-    (BOLD, "Comité de producto · Tailspin Toys", 0),
-    (REGULAR, "", 0),
-    (REGULAR, "Fecha: 14 de octubre de 2026, de 10:00 a 11:00", 0),
-    (REGULAR, "Lugar: sala Triana, oficina de Sevilla", 0),
-    (REGULAR, "Asistentes: Lucía Romero (producto), Andrés Vega (equipo web),", 0),
-    (REGULAR, "Marta Ibáñez (datos) y Pablo Ortega (QA)", 40),
-    (REGULAR, "", 0),
-    (BOLD, "1. Estado del sprint 14", 0),
-    (REGULAR, "El equipo web cierra todas las tareas del sprint. Las pruebas", 40),
-    (REGULAR, "end-to-end pasan contra el sitio compilado.", 40),
-    (REGULAR, "", 0),
-    (BOLD, "2. Valoraciones de los juegos", 0),
-    (REGULAR, "Varios usuarios no distinguen bien las medias estrellas. Se propone", 40),
-    (REGULAR, "sustituirlas por una nota numérica, más fácil de comparar.", 40),
-    (REGULAR, "", 0),
-    (BOLD, "3. Base de datos", 0),
-    (REGULAR, "Se revisa si conviene cambiar de base de datos. El catálogo es pequeño", 40),
-    (REGULAR, "y se carga desde games.csv, así que no hace falta.", 40),
-    (REGULAR, "", 0),
-    (BOLD, "Decisiones", 0),
-    (REGULAR, "D1. Se mantiene SQLite como base de datos del catálogo.", 40),
-    (REGULAR, "D2. La valoración de los juegos se muestra en una escala de 1 a 10,", 40),
-    (REGULAR, "con números enteros y sin estrellas. Implementado en el sprint 14.", 100),
-    (REGULAR, "D3. El botón «Support This Game» sigue sin tramitar aportaciones", 40),
-    (REGULAR, "hasta que se elija la pasarela de pago.", 100),
-    (REGULAR, "", 0),
-    (BOLD, "Acciones", 0),
-    (REGULAR, "- Lucía Romero: actualizar la especificación de requisitos (v1.3)", 40),
-    (REGULAR, "con la decisión D2. Antes del 30/10/2026.", 70),
-    (REGULAR, "- Pablo Ortega: preparar el plan de pruebas de la versión 1.3.", 40),
-    (REGULAR, "Antes del 06/11/2026.", 70),
-    (REGULAR, "", 0),
-    (REGULAR, "", 0),
-    (REGULAR, "Firmado: Lucía Romero, secretaria del comité", 0),
+    (TITLE_FONT, "ACTA DE REUNIÓN", 0),
+    (BOLD_FONT, "Comité de producto · Tailspin Toys", 0),
+    (REGULAR_FONT, "", 0),
+    (REGULAR_FONT, "Fecha: 14 de octubre de 2026, de 10:00 a 11:00", 0),
+    (REGULAR_FONT, "Lugar: sala Triana, oficina de Sevilla", 0),
+    (REGULAR_FONT, "Asistentes: Lucía Romero (producto), Andrés Vega (equipo web),", 0),
+    (REGULAR_FONT, "Marta Ibáñez (datos) y Pablo Ortega (QA)", 40),
+    (REGULAR_FONT, "", 0),
+    (BOLD_FONT, "1. Estado del sprint 14", 0),
+    (REGULAR_FONT, "El equipo web cierra todas las tareas del sprint. Las pruebas", 40),
+    (REGULAR_FONT, "end-to-end pasan contra el sitio compilado.", 40),
+    (REGULAR_FONT, "", 0),
+    (BOLD_FONT, "2. Valoraciones de los juegos", 0),
+    (REGULAR_FONT, "Varios usuarios no distinguen bien las medias estrellas. Se propone", 40),
+    (REGULAR_FONT, "sustituirlas por una nota numérica, más fácil de comparar.", 40),
+    (REGULAR_FONT, "", 0),
+    (BOLD_FONT, "3. Base de datos", 0),
+    (REGULAR_FONT, "Se revisa si conviene cambiar de base de datos. El catálogo es pequeño", 40),
+    (REGULAR_FONT, "y se carga desde games.csv, así que no hace falta.", 40),
+    (REGULAR_FONT, "", 0),
+    (BOLD_FONT, "Decisiones", 0),
+    (REGULAR_FONT, "D1. Se mantiene SQLite como base de datos del catálogo.", 40),
+    (REGULAR_FONT, "D2. La valoración de los juegos se muestra en una escala de 1 a 10,", 40),
+    (REGULAR_FONT, "con números enteros y sin estrellas. Implementado en el sprint 14.", 100),
+    (REGULAR_FONT, "D3. El botón «Support This Game» sigue sin tramitar aportaciones", 40),
+    (REGULAR_FONT, "hasta que se elija la pasarela de pago.", 100),
+    (REGULAR_FONT, "", 0),
+    (BOLD_FONT, "Acciones", 0),
+    (REGULAR_FONT, "- Lucía Romero: actualizar la especificación de requisitos (v1.3)", 40),
+    (REGULAR_FONT, "con la decisión D2. Antes del 30/10/2026.", 70),
+    (REGULAR_FONT, "- Pablo Ortega: preparar el plan de pruebas de la versión 1.3.", 40),
+    (REGULAR_FONT, "Antes del 06/11/2026.", 70),
+    (REGULAR_FONT, "", 0),
+    (REGULAR_FONT, "", 0),
+    (REGULAR_FONT, "Firmado: Lucía Romero, secretaria del comité", 0),
 ]
 
 
