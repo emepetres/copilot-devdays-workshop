@@ -98,6 +98,7 @@ Los asistentes crean su repo desde una **plantilla del workshop** propia, deriva
 - `docs/architecture.png`: el diagrama en estilo pizarra (Excalidraw). Su fuente se guarda **fuera** de la plantilla.
 - `docs/` con un PDF de requisitos de 2–3 págs. y un escaneado de 1 pág. (acta), ambos en español.
 - `reviewer/`: el esqueleto `uv` de la lección extra, con TODOs y un agente de ejemplo.
+- `scripts/docling-warmup/`: el PDF y el script de la conversión de calentamiento de la lección 0 (`npm run docling:warmup`). Va fuera de `docs/` para que el Engineering Reviewer no lo revise.
 
 Lo que **no** va en la plantilla:
 
@@ -129,7 +130,9 @@ Se hace antes de venir, sin consumir tiempo de la sesión:
 4. `gh` instalado y `gh auth login`.
 5. Repo creado desde la plantilla del workshop, clonado y con `npm install`.
 6. Navegador de Playwright instalado (`npx playwright install chromium`).
-7. `uv`, `uv tool install "docling-mcp[local]==3.3.0"` y una **conversión de calentamiento** del PDF de requisitos de la plantilla. Descarga ~510 MB de modelos. El comando exacto se fija al redactar la lección.
+7. `uv`, `uv tool install "docling-mcp[local]==3.3.0"` y una **conversión de calentamiento** con `npm run docling:warmup`. Descarga ~510 MB de modelos.
+   - Convierte un **PDF de calentamiento** propio, `scripts/docling-warmup/calentamiento.pdf`, y no el PDF de requisitos de la lección 6. Así la lección 0 no espera a los documentos sembrados ([#16](https://github.com/emepetres/copilot-devdays-workshop/issues/16)). Tiene una página de texto con una tabla y una página escaneada, para que se descarguen los modelos de layout, tablas y OCR. Su generador está en `docs/assets/generate-warmup-pdf.py`.
+   - El script arranca `docling-mcp-server` por `stdio` con `DOCLING_MCP_CONVERSION_MODE=local` y los grupos `conversion manipulation`. Cuando la lección 6 añada Docling a `.vscode/mcp.json`, debe usar la misma configuración. El script también comprueba que el OCR lee una palabra de control de la página escaneada.
 8. Avisos: Workspace Trust y rutas largas en Windows.
 
 MAF no añade nada aquí, porque se instala en la propia lección extra (`uv sync`).
