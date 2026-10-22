@@ -28,6 +28,24 @@ El agente (con sus skills y herramientas) que los asistentes construyen durante 
 
 _Evitar_: repo a revisar (nombrar la app: Tailspin Toys).
 
+## Plantilla del workshop
+
+Repo plantilla propio del **workshop**, derivado de la plantilla de Tailspin Toys del **workshop base**, que añade el material que necesitan las **lecciones** nuevas. Cada asistente crea su repo a partir de ella en la **lección 0**.
+
+_Evitar_: fork (no se hace fork, se crea desde plantilla).
+
+## Skill
+
+Conjunto de instrucciones reutilizable que describe **cómo hacer** una tarea concreta. El agente la carga solo cuando la necesita y es portable entre herramientas (Copilot, Claude Code...).
+
+_Evitar_: agente (para referirse a una skill).
+
+## Custom agent
+
+**Rol** con su propio conjunto de herramientas permitidas y su propio contexto, que puede apoyarse en **skills**. En Claude Code, el equivalente es un _subagent_. El **Engineering Reviewer** es un custom agent.
+
+_Evitar_: chat mode (nombre antiguo), skill (no restringe herramientas ni aísla el contexto).
+
 ## Inconsistencia sembrada
 
 Error introducido a propósito en el material que el **workshop** añade a Tailspin Toys (diagramas, documentos) para que el **Engineering Reviewer** lo detecte al contrastarlo con el código o los requisitos.
