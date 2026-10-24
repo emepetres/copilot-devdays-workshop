@@ -102,6 +102,20 @@ for (const command of ['setup', 'warmup', 'check']) {
   });
 }
 
+// VS Code only loads a skill whose `name` matches its folder.
+test('every skill in the lesson material is named after its folder and has a description', () => {
+  const skills = readdirSync(LESSONS, { recursive: true })
+    .map((path) => path.replaceAll('\\', '/'))
+    .filter((path) => path.endsWith('/SKILL.md'));
+  assert.ok(skills.length > 0);
+  for (const path of skills) {
+    const frontmatter = readFileSync(join(LESSONS, path), 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+    const folder = path.split('/').at(-2);
+    assert.match(frontmatter, new RegExp(`^name: ${folder}$`, 'm'), path);
+    assert.match(frontmatter, /^description: \S/m, path);
+  }
+});
+
 test('check on a machine without Docling reports what is missing and fails', () => {
   const { status, stdout } = run(['check'], tailspinRepo(), bareMachine());
   assert.notEqual(status, 0);
