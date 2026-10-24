@@ -1,0 +1,18 @@
+/*
+ * The home page carries the itinerary diagram twice (horizontal and vertical),
+ * as plain Markdown images so it also renders on github.com. Show only the one
+ * that fits the screen. Built image URLs keep the source file name.
+ */
+img[src*='itinerary-vertical'] {
+  display: none;
+}
+
+@media (max-width: 50rem) {
+  img[src*='itinerary-horizontal'] {
+    display: none;
+  }
+
+  img[src*='itinerary-vertical'] {
+    display: block;
+  }
+}

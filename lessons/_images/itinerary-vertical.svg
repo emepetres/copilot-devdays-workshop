@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 900" font-family="Segoe Print, Comic Sans MS, Chalkboard SE, cursive" font-size="14" role="img" aria-labelledby="title">
+<title id="title">Itinerary: how the mod plugs into the base workshop</title>
+<!-- Itinerary diagram, vertical variant (narrow screens). Two lanes, base and mod, one path; numbers follow the home page list. -->
+<defs><filter id="rough" filterUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter><marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#57606a"/></marker></defs>
+<rect width="760" height="900" fill="#fffdf7"/>
+<text x="20" y="32" font-size="20" font-weight="700" fill="#24292f">Itinerary · Wednesday 28</text>
+<text x="20" y="62" font-weight="700" fill="#0969da">BASE WORKSHOP (untouched)</text>
+<text x="400" y="62" font-weight="700" fill="#d9480f">MOD (this repo)</text>
+<g filter="url(#rough)" stroke-width="2">
+<rect x="20" y="80" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da"/>
+<rect x="400" y="160" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="20" y="240" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da"/>
+<rect x="20" y="320" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da"/>
+<rect x="400" y="400" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="20" y="480" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-dasharray="6 4"/>
+<rect x="400" y="560" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="400" y="640" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="400" y="720" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="20" y="800" width="300" height="50" rx="8" fill="#f6f8fa" stroke="#8b949e" stroke-dasharray="6 4"/>
+<rect x="400" y="800" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f" stroke-dasharray="6 4"/>
+</g>
+<g fill="#24292f">
+<text x="36" y="110">Exercise 0 · Prerequisites (at home)</text>
+<text x="416" y="190">Extra prerequisites (at home)</text>
+<text x="36" y="270">Exercise 1 · Custom instructions</text>
+<text x="36" y="350">Exercise 2 · Agent mode</text>
+<text x="416" y="430">Matt Pocock's workflow</text>
+<text x="36" y="510">Exercise 3 · Playwright MCP</text>
+<text x="36" y="548" font-size="12" fill="#0969da">skippable if short on time</text>
+<text x="416" y="590">A skill that reads images</text>
+<text x="416" y="670">Engineering Reviewer with Docling</text>
+<text x="416" y="750">Wrap-up</text>
+<text x="36" y="830" fill="#6e7781">Exercises 4, 5, 6, Foundry — skipped</text>
+<text x="416" y="830">Extra lesson (home, optional)</text>
+</g>
+<g filter="url(#rough)" stroke="#57606a" stroke-width="2.5" fill="none" marker-end="url(#o)">
+<path d="M170 130L560 158"/><path d="M570 210L170 238"/><path d="M170 290V318"/><path d="M170 370L560 398"/><path d="M570 450L170 478"/><path d="M170 530L560 558"/><path d="M570 610V638"/><path d="M570 690V718"/><path d="M570 770V798" stroke-dasharray="6 4"/>
+</g>
+<path filter="url(#rough)" d="M700 450V558" stroke="#d9480f" stroke-width="2" stroke-dasharray="6 4" fill="none" marker-end="url(#o)"/>
+<g fill="#d9480f"><circle cx="20" cy="80" r="13"/><circle cx="400" cy="160" r="13"/><circle cx="20" cy="240" r="13"/><circle cx="20" cy="320" r="13"/><circle cx="400" cy="400" r="13"/><circle cx="20" cy="480" r="13"/><circle cx="400" cy="560" r="13"/><circle cx="400" cy="640" r="13"/><circle cx="400" cy="800" r="13"/></g>
+<g fill="#fff" font-weight="700" text-anchor="middle" font-size="13"><text x="20" y="85">1</text><text x="400" y="165">2</text><text x="20" y="245">3</text><text x="20" y="325">4</text><text x="400" y="405">5</text><text x="20" y="485">6</text><text x="400" y="565">7</text><text x="400" y="645">8</text><text x="400" y="805">9</text></g>
+<text x="20" y="885" fill="#57606a" font-size="12">Arrows = order to follow. Dashed = skipped (base), skippable or done at home.</text>
+</svg>

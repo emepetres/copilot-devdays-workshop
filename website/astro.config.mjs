@@ -13,6 +13,24 @@ const githubAdmonitionMapping = {
   CAUTION: 'caution',
 };
 
+// The base workshop (VS Code track of Real-world development) is used as is,
+// from its published site.
+const baseWorkshopUrl =
+  'https://github-samples.github.io/copilot-workshops/real-world-development/vscode/';
+
+/**
+ * Sidebar entry for a base exercise: an external link, badged so it stands out
+ * from the mod lessons.
+ * @param {string} label
+ * @param {string} slug
+ * @param {string} [badge]
+ */
+const baseExercise = (label, slug, badge = 'base') => ({
+  label,
+  link: `${baseWorkshopUrl}${slug}/`,
+  badge: { text: badge, variant: /** @type {const} */ ('note') },
+});
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://emepetres.github.io',
@@ -25,13 +43,14 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'Construye tu Engineering Reviewer',
+      title: 'Build your Engineering Reviewer',
       description:
-        'Workshop práctico de GitHub Copilot en VS Code: instrucciones, skills, MCP y agentes. GitHub Copilot Dev Days Sevilla.',
-      // Spanish only: no i18n, just the root locale.
+        "A mod of the GitHub Copilot Dev Days workshop: Matt Pocock's workflow, a skill that reads images and an Engineering Reviewer with Docling MCP, in VS Code.",
+      // English only: no i18n, just the root locale, matching the base workshop.
       locales: {
-        root: { label: 'Español', lang: 'es' },
+        root: { label: 'English', lang: 'en' },
       },
+      customCss: ['./src/styles/custom.css'],
       social: [
         {
           icon: 'github',
@@ -47,20 +66,22 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/emepetres/copilot-devdays-workshop/edit/main/lessons/',
       },
-      // Maintained by hand: the order here is the order attendees see.
+      // Maintained by hand: the order here is the itinerary attendees follow.
+      // Base exercises link out to the base site; mod lessons are local pages.
       sidebar: [
-        { label: 'Inicio', link: '/' },
+        { label: 'Home', link: '/' },
         {
-          label: 'Lecciones',
+          label: 'Itinerary',
           items: [
-            { label: '0 · Prerrequisitos', link: '/0-prerrequisitos/' },
-            { label: '1 · Custom instructions', link: '/1-custom-instructions/' },
-            { label: '2 · Agent mode', link: '/2-agent-mode/' },
-            { label: '3 · El flujo de Matt Pocock', link: '/3-flujo-matt-pocock/' },
-            { label: '4 · Una skill que analiza imágenes', link: '/4-skill-imagenes/' },
-            { label: '5 · Playwright MCP', link: '/5-playwright-mcp/' },
-            { label: '6 · El Engineering Reviewer con Docling MCP', link: '/6-engineering-reviewer/' },
-            { label: 'Extra · Orquestación por código', link: '/extra-orquestacion/' },
+            baseExercise('Exercise 0 · Prerequisites', '0-prerequisites'),
+            { label: 'Extra prerequisites', link: '/prerequisites/' },
+            baseExercise('Exercise 1 · Custom instructions', '1-custom-instructions'),
+            baseExercise('Exercise 2 · Agent mode', '2-agent-mode'),
+            { label: "Matt Pocock's workflow", link: '/pocock-workflow/' },
+            baseExercise('Exercise 3 · Playwright MCP', '3-mcp', 'base · skippable'),
+            { label: 'A skill that reads images', link: '/image-skill/' },
+            { label: 'The Engineering Reviewer with Docling MCP', link: '/engineering-reviewer/' },
+            { label: 'Extra: orchestration in code', link: '/extra-orchestration/' },
           ],
         },
       ],

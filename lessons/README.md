@@ -1,50 +1,40 @@
 ---
-title: "Construye tu Engineering Reviewer con GitHub Copilot: instrucciones, skills, MCP y agentes"
+title: "Build your Engineering Reviewer"
 slug: index
 ---
 
-**Workshop práctico · 3 h · en español · GitHub Copilot Dev Days Sevilla 🚀**
+This is **a mod of the Dev Days workshop**. You follow the [base workshop][base] as it is, the VS Code track of *Real-world development* with Tailspin Toys, and at set points you switch to the lessons published here. Along the way you adopt Matt Pocock's workflow and build the **Engineering Reviewer**: a custom agent that reads the requirements PDF, a scanned meeting minutes document, the architecture diagram and the code, and tells you where they disagree.
 
-¿Y si un agente leyera a la vez tus requisitos en PDF, el acta escaneada de la última reunión, el diagrama de arquitectura de la pizarra y el código? ¿Y si además te dijera dónde no cuadran? 🤔
+The base lessons stay on the base site, in English. The mod lessons, its extra prerequisites and its material live in this repo, also in English. You can talk to the agent in Spanish.
 
-En este workshop lo construyes tú, paso a paso, con **GitHub Copilot en VS Code**.
+![Itinerary: the base workshop on top, the mod lessons below, with numbered arrows showing the order to follow.](_images/itinerary-horizontal.svg)
+![Itinerary: the base workshop and the mod lessons as two lanes, with numbered arrows showing the order to follow.](_images/itinerary-vertical.svg)
 
-## 🎯 ¿Qué vas a hacer?
+## Itinerary
 
-Partimos de **Tailspin Toys**, la app de ejemplo de los workshops oficiales de GitHub, y avanzamos de lo básico a lo avanzado:
+1. [Exercise 0 · Prerequisites][ex0] (base, **at home before the workshop**)
+2. [Extra prerequisites](prerequisites/) (mod, **at home before the workshop**)
+3. [Exercise 1 · Custom instructions][ex1] (base)
+4. [Exercise 2 · Agent mode][ex2] (base)
+5. [Matt Pocock's workflow](pocock-workflow/) (mod)
+6. [Exercise 3 · Testing your feature with the Playwright MCP server][ex3] (base, **skippable** if short on time)
+7. [A skill that reads images](image-skill/) (mod)
+8. [The Engineering Reviewer with Docling MCP](engineering-reviewer/) (mod)
+9. [Extra: orchestration in code](extra-orchestration/) (mod, at home, optional)
 
-- 🧭 **Darle contexto a Copilot** con instrucciones personalizadas y trabajar en **agent mode**.
-- 🔥 **Afinar antes de construir** con el flujo de skills de Matt Pocock: el agente te hace preguntas hasta que la idea está clara y luego la implementa con tests.
-- 🖼️ **Crear tu propia skill que analiza imágenes**: Copilot "mira" un diagrama de arquitectura y lo contrasta con el código.
-- 🔌 **Conectar herramientas con MCP**: Playwright para probar en el navegador y **Docling** para leer PDFs y documentos escaneados (OCR) gastando muchos menos tokens.
-- 🕵️ **Construir el Engineering Reviewer**: un agente personalizado que analiza juntos documentación y código y detecta **inconsistencias entre requisitos, arquitectura e implementación**.
+The itinerary skips the rest of the base workshop (Exercises 4–6 and Foundry): the mod lessons replace them. Whatever you don't finish in the session, you can finish at home.
 
-## 💚 ¿Para quién es?
+## Rehearsed base
 
-Para **estudiantes y developers que empiezan** con GitHub Copilot, o que ya lo usan y quieren ir más allá del autocompletado. No hace falta experiencia previa con agentes, skills ni MCP.
+The mod was rehearsed against these commits of the base:
 
-## 🧰 ¿Qué necesitas?
+- Lessons: [`github-samples/copilot-workshops@35c69f6`](https://github.com/github-samples/copilot-workshops/tree/35c69f6)
+- Template: [`github-samples/tailspin-toys@a0f74a8`](https://github.com/github-samples/tailspin-toys/tree/a0f74a8)
 
-- 💻 Tu portátil con **VS Code**.
-- 🆓 Una cuenta de GitHub con **Copilot Free o Student**: no hace falta ningún plan de pago.
-- ⚠️ **Haber completado la [lección 0][lesson-0] antes de venir**. Instala las herramientas y descarga los modelos de Docling (~1,5 GB). Con la wifi del evento no da tiempo.
+If the base has changed since, compare against them.
 
-## 🏠 ¿Y si no me da tiempo?
-
-El workshop tiene más contenido del que cabe en 3 h, a propósito. Todo el material queda publicado en español y paso a paso para que lo termines en casa a tu ritmo.
-
-## 📌 En resumen
-
-- 🗓 **Fecha:** miércoles 28 de octubre de 2026
-- 🕔 **Hora:** 18:00 - 21:00
-- 📍 **Dónde:** [Espacio RES, Av. de la República Argentina, 25, Planta 9, 41011 Sevilla](https://maps.app.goo.gl/TNp6YDnn8oEJ1nxj7)
-- 📺 **En directo:** por YouTube
-- 🎟 **Entrada:** [gratuita, con registro previo](https://luma.com/h8739h67)
-
-## 🚀 ¿Te lo vas a perder?
-
-**Una tarde, mucho GitHub Copilot, muchos agentes y 🤖 un Engineering Reviewer hecho por ti.**
-
-Empieza por la [lección 0: prerrequisitos][lesson-0].
-
-[lesson-0]: 0-prerrequisitos/
+[base]: https://github-samples.github.io/copilot-workshops/real-world-development/vscode/
+[ex0]: https://github-samples.github.io/copilot-workshops/real-world-development/vscode/0-prerequisites/
+[ex1]: https://github-samples.github.io/copilot-workshops/real-world-development/vscode/1-custom-instructions/
+[ex2]: https://github-samples.github.io/copilot-workshops/real-world-development/vscode/2-agent-mode/
+[ex3]: https://github-samples.github.io/copilot-workshops/real-world-development/vscode/3-mcp/

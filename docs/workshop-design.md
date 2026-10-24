@@ -47,7 +47,7 @@ Qué deja la base en el repo del asistente ([estado del repo base](https://githu
 
 ## 4. Itinerario y agenda
 
-El diagrama está prototipado en la rama `prototype/itinerary-diagram` ([decisión](https://github.com/emepetres/copilot-devdays-workshop/issues/33)): pizarra, azul para la base y naranja para el mod, horizontal para la portada y la diapositiva de apertura, y vertical para móvil. **Falta ajustarlo al orden de abajo**, marcar Exercise 3 como saltable y quitar del pie el antiguo plan B.
+El diagrama está prototipado en la rama `prototype/itinerary-diagram` ([decisión](https://github.com/emepetres/copilot-devdays-workshop/issues/33)): pizarra, azul para la base y naranja para el mod, horizontal para la portada y la diapositiva de apertura, y vertical para móvil. Ya está ajustado al orden de abajo, con Exercise 3 marcado como saltable, en `lessons/_images/itinerary-horizontal.svg` y `itinerary-vertical.svg`. La portada numera también los pasos de casa: 1 es Exercise 0 y 2 son los prerrequisitos extra.
 
 | # | Lección | Origen | Min | Acumulado |
 |---|---|---|---|---|
