@@ -1,0 +1,3 @@
+# The mod's material reaches the attendee byte for byte (npx github:, degit), and
+# the CLI's shebang must keep LF.
+mod/** -text

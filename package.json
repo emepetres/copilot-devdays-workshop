@@ -1,0 +1,20 @@
+{
+  "name": "copilot-devdays-workshop-mod",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CLI of the Copilot Dev Days Sevilla workshop mod: brings the material of its own lessons into your Tailspin Toys repo.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "copilot-devdays-workshop-mod": "mod/cli.mjs"
+  },
+  "files": [
+    "mod"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
