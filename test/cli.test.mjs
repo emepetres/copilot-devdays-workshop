@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const CLI = fileURLToPath(new URL('../mod/cli.mjs', import.meta.url));
@@ -105,12 +105,11 @@ for (const command of ['setup', 'warmup', 'check']) {
 // VS Code only loads a skill whose `name` matches its folder.
 test('every skill in the lesson material is named after its folder and has a description', () => {
   const skills = readdirSync(LESSONS, { recursive: true })
-    .map((path) => path.replaceAll('\\', '/'))
-    .filter((path) => path.endsWith('/SKILL.md'));
+    .filter((path) => basename(path) === 'SKILL.md');
   assert.ok(skills.length > 0);
   for (const path of skills) {
     const frontmatter = readFileSync(join(LESSONS, path), 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-    const folder = path.split('/').at(-2);
+    const folder = basename(dirname(path));
     assert.match(frontmatter, new RegExp(`^name: ${folder}$`, 'm'), path);
     assert.match(frontmatter, /^description: \S/m, path);
   }

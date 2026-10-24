@@ -88,7 +88,7 @@ Some of the skills read and write GitHub issues, and they need to know where the
    /setup-matt-pocock-skills
    ```
 
-3. Accept the default answer to each question:
+3. Accept the default answer to each question it asks. It skips the ones it can answer by reading the repo:
    - **Issue tracker**: GitHub, through `gh`.
    - **Triage labels**: the default ones (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`).
    - **Domain docs**: single-context, one `GLOSSARY.md` and `docs/adr/` at the root.
@@ -129,7 +129,7 @@ Copilot has its own way to think before building: **Plan mode**. Select **Plan**
 | What is left behind | The plan, in the conversation | `GLOSSARY.md`, ADRs and the spec in the issue |
 | Best for | Changes whose *what* is already clear | Ideas that are still fuzzy or have open decisions |
 
-Both are valid. Here you use grilling because its output stays in the repo and in the issue, and the Engineering Reviewer will read those layers later. Plan mode is also your fallback: if the grilling doesn't wait for your answers and just carries on ([mattpocock/skills#1087][issue-1087]), use Plan mode with the same issue.
+Both are valid. Here you use grilling because its output stays in the repo and in the issue, and the Engineering Reviewer will read those layers later.
 
 ## 8. Build it with `/implement-lite`
 
@@ -140,18 +140,18 @@ With the spec agreed, the agent builds it. Matt Pocock's `implement` skill reads
 - replaces `/code-review` with a light review of its own diff against the spec and `GLOSSARY.md`. `/code-review` starts subagents and takes much longer than the time you have;
 - commits to the current branch, without pushing or opening a pull request.
 
-1. Open a **New Chat**, still in **Agent** with **Auto**. Starting fresh is part of the workflow: everything agreed is in the issue and in `GLOSSARY.md`, not in the old conversation.
+1. Open a **New Chat**, still in **Agent** with **Auto**. Starting fresh is part of the method: everything agreed is in the issue and in `GLOSSARY.md`, not in the old conversation.
 2. Send:
 
    ```text
-   /implement-lite the GitHub issue "Allow users to sort the game list", following the refined spec in its comments.
+   /implement-lite the GitHub issue "Allow users to sort the game list", following the refined spec in its comments. Use the /tdd and /quality-checks skills.
    ```
 
 3. Select **Continue** whenever it asks to run a command. Watch the cycle: a failing test, the code, the test passing, and again.
 4. When it finishes, run the app (`npm run dev`, if it isn't running) and try the sorting at <http://localhost:4321>.
 
 > [!TIP]
-> **At home, try the original.** In your own projects, use `/implement`, which comes with the plugin, with its full `/code-review`. It takes longer, but the review runs in separate subagents, so it isn't biased toward the code it just wrote.
+> **At home, try the original.** In your own projects, use `/implement`, which comes with the plugin, with its full `/code-review`. It takes longer, and the review runs in separate subagents. Its review only sees committed changes, so if it says it can't see your changes, commit first and run `/code-review` in a new chat.
 
 ## 9. Commit the rest
 
@@ -200,7 +200,7 @@ The 0–5 score of a game. A game may have no star rating (unrated).
 **`git log --oneline`** shows, from newest to oldest, something like:
 
 ```text
-f3c9a1e Add files from Matt Pocock's workflow
+f3c9a1e Set up Matt Pocock's skills and the glossary
 9b2d7e4 Add sorting of the game list
 5e8a0c2 Add filtering by publisher and category
 ```
@@ -232,7 +232,6 @@ Next, *[Exercise 3 · Testing your feature with the Playwright MCP server][ex3]*
 [ex3]: https://github-samples.github.io/copilot-workshops/real-world-development/vscode/3-mcp/
 [pocock-skills]: https://github.com/mattpocock/skills
 [issue-1052]: https://github.com/mattpocock/skills/issues/1052
-[issue-1087]: https://github.com/mattpocock/skills/issues/1087
 [vscode-skills]: https://code.visualstudio.com/docs/copilot/customization/agent-skills
 [vscode-plugins]: https://code.visualstudio.com/docs/copilot/customization/agent-plugins
 [vscode-plan]: https://code.visualstudio.com/docs/copilot/agents/planning
