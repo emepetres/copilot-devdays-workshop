@@ -2,21 +2,37 @@
 
 ## Workshop
 
-La sesión práctica completa (3 h oficiales) impartida en los GitHub Copilot Dev Days de Sevilla, junto con todo su material. Lo que los asistentes no terminen en la sesión, lo completan en casa.
+La sesión práctica completa (3 h oficiales) impartida en los GitHub Copilot Dev Days de Sevilla: el **workshop base** más el **mod**, recorridos según el **itinerario**. Lo que los asistentes no terminen en la sesión, lo completan en casa.
 
 _Evitar_: workflow (para referirse al workshop).
 
 ## Workshop base
 
-El workshop publicado oficialmente en los Dev Days (https://dev-days.github.com/#workshops) del que parte este **workshop**, reutilizando lo máximo posible.
+El workshop publicado oficialmente en los Dev Days (https://dev-days.github.com/#workshops) sobre el que se apoya este **workshop**. Se usa tal cual, sin reescribir ni traducir sus lecciones.
+
+## Mod
+
+Lo que este repo publica para modificar el **workshop base** sin tocarlo: las **lecciones propias**, los **prerrequisitos extra** y el material que estas necesitan.
+
+_Evitar_: fork, plantilla (el mod no copia la base).
+
+## Itinerario
+
+Secuencia ordenada de lecciones base y **lecciones propias** que se sigue en una sesión concreta, incluidas las lecciones base que se saltan.
+
+_Evitar_: agenda (la agenda reparte tiempos; el itinerario fija el orden).
 
 ## Lección
 
 Bloque autocontenido del **workshop** con un objetivo de aprendizaje propio. Equivale a las _lessons_ / _exercises_ de los workshops publicados.
 
-## Lección 0
+## Lección propia
 
-**Lección** de prerrequisitos que el asistente completa antes de venir al **workshop**: qué instalar y qué cuentas tener listas. No consume tiempo de la sesión.
+**Lección** publicada en el **mod**. Es *sustituta* si ocupa el lugar de una lección base, *intercalada* si se inserta entre dos lecciones base, o **lección extra**.
+
+## Prerrequisitos extra
+
+Lo que el asistente hace en casa, después de los prerrequisitos de la base y antes de venir, para preparar el **mod**: instalar Docling y traer el material de las **lecciones propias**.
 
 ## Lección extra
 
@@ -24,15 +40,9 @@ Bloque autocontenido del **workshop** con un objetivo de aprendizaje propio. Equ
 
 ## Engineering Reviewer
 
-El agente (con sus skills y herramientas) que los asistentes construyen durante las **lecciones** nuevas del **workshop** para analizar conjuntamente la documentación y el código de la app del **workshop base** y detectar inconsistencias entre requisitos, arquitectura e implementación.
+El agente (con sus skills y herramientas) que los asistentes construyen durante las **lecciones propias** para analizar conjuntamente la documentación y el código de la app del **workshop base** y detectar inconsistencias entre requisitos, arquitectura e implementación.
 
 _Evitar_: repo a revisar (nombrar la app: Tailspin Toys).
-
-## Plantilla del workshop
-
-Repo plantilla propio del **workshop**, derivado de la plantilla de Tailspin Toys del **workshop base**, que añade el material que necesitan las **lecciones** nuevas. Cada asistente crea su repo a partir de ella en la **lección 0**.
-
-_Evitar_: fork (no se hace fork, se crea desde plantilla).
 
 ## Skill
 
@@ -48,7 +58,7 @@ _Evitar_: chat mode (nombre antiguo), skill (no restringe herramientas ni aísla
 
 ## Inconsistencia sembrada
 
-Error introducido a propósito en el material que el **workshop** añade a Tailspin Toys (diagramas, documentos) para que el **Engineering Reviewer** lo detecte al contrastarlo con el código o los requisitos.
+Error introducido a propósito en el material que el **mod** añade a Tailspin Toys (diagramas, documentos) para que el **Engineering Reviewer** lo detecte al contrastarlo con el código o los requisitos.
 
 _Evitar_: bug, error (sin más: no es un fallo del código, sino una discrepancia deliberada entre fuentes).
 
