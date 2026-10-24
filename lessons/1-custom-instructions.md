@@ -81,7 +81,7 @@ Dedica un momento a leer los archivos de instrucciones que incluye este reposito
 
 Sigamos los procedimientos recomendados y creemos una rama para los cambios.
 
-1. Vuelve a tu codespace de la lección anterior.
+1. Abre en VS Code la carpeta de tu repo, la que clonaste en la lección anterior.
 2. Abre una terminal nueva pulsando <kbd>Control</kbd>+<kbd>`</kbd> (Mac) o <kbd>Ctrl</kbd>+<kbd>`</kbd> (Windows/Linux).
 3. Crea una rama nueva y cámbiate a ella:
 
@@ -94,7 +94,7 @@ Sigamos los procedimientos recomendados y creemos una rama para los cambios.
 > [!TIP]
 > **Abre Copilot Chat**
 >
-> Antes de empezar los ejercicios siguientes, vuelve a tu codespace, abre el panel de Copilot Chat y selecciona **New Chat** para empezar una conversación limpia. La selección de modo y de modelo varía en cada lección; cada paso lo indica donde importa.
+> Antes de empezar los ejercicios siguientes, vuelve a VS Code, abre el panel de Copilot Chat y selecciona **New Chat** para empezar una conversación limpia. La selección de modo varía en cada lección; cada paso lo indica donde importa. Como modelo, usa siempre **Auto**.
 
 Para ver el efecto de las instrucciones personalizadas, empieza enviando un prompt con el archivo de instrucciones actual. Después lo actualizarás y volverás a enviar el mismo prompt para ver la diferencia.
 
@@ -102,7 +102,7 @@ Para ver el efecto de las instrucciones personalizadas, empieza enviando un prom
 2. Abre `src/lib/publishers.ts` para que Copilot sepa dónde debe ir la función auxiliar.
 3. Selecciona **Agent** en el desplegable de agentes de la vista Chat para que Copilot pueda aplicar cambios en los archivos.
 
-   ![Captura del selector de agente en la vista Chat.](../../_images/shared-chat-mode-selector.png)
+   ![Captura del selector de agente en la vista Chat.](_images/shared-chat-mode-selector.png)
 
 4. Envía el siguiente prompt:
 
@@ -199,7 +199,7 @@ Con la rama publicada, deberíamos crear una solicitud de incorporación de camb
 > [!NOTE]
 > Esta es la primera lección en la que Copilot actúa en GitHub por ti. La plantilla del proyecto ya conecta las herramientas de GitHub a tu área de trabajo, así que no hay nada que configurar. La primera vez que Copilot use una, puede que VS Code te pida iniciar sesión en GitHub. Sigue las indicaciones para permitirlo. Aprenderás cómo funciona esta conexión (Model Context Protocol) en una lección posterior.
 
-1. Abre Copilot Chat dentro de tu codespace.
+1. Abre Copilot Chat en VS Code.
 2. Pulsa <kbd>Control</kbd>+<kbd>Command</kbd>+<kbd>I</kbd> (Mac) o <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> (Windows/Linux) para abrir la vista de Copilot Chat y asegúrate de que **Agent** está seleccionado en el selector de agentes.
 3. Pide a Copilot que busque la issue relacionada con la actualización de los archivos de instrucciones y que cree, desde la rama actual, una solicitud de incorporación de cambios que describa tanto las actualizaciones de las instrucciones como la nueva base de la función auxiliar de editores:
 
@@ -238,7 +238,11 @@ A continuación, pondrás en práctica esas instrucciones en [agent mode][next-l
 - [Instrucciones personalizadas personales para GitHub Copilot][personal-instructions]
 - [Awesome Copilot: colección de archivos de instrucciones y otros recursos][awesome-copilot]
 
-[previous-lesson]: ../0-prerequisites/
+---
+
+Esta lección es una traducción y adaptación de [Exercise 1 - Custom instructions (VS Code)][original-lesson], de [github-samples/copilot-workshops][original-repo]. Copyright (c) 2023 GitHub, con [licencia MIT][original-license].
+
+[previous-lesson]: ../0-prerrequisitos/
 [next-lesson]: ../2-agent-mode/
 [instruction-files]: https://code.visualstudio.com/docs/copilot/copilot-customization
 [instructions-best-practices]: https://docs.github.com/enterprise-cloud@latest/copilot/using-github-copilot/coding-agent/best-practices-for-using-copilot-to-work-on-tasks#adding-custom-instructions-to-your-repository
@@ -248,3 +252,6 @@ A continuación, pondrás en práctica esas instrucciones en [agent mode][next-l
 [astro-instructions]: https://github.com/github-samples/tailspin-toys/blob/main/.github/instructions/astro.instructions.md
 [awesome-copilot]: https://github.com/github/awesome-copilot
 [custom-instructions-support]: https://docs.github.com/copilot/reference/custom-instructions-support
+[original-lesson]: https://github.com/github-samples/copilot-workshops/blob/main/docs/real-world-development/vscode/1-custom-instructions.md
+[original-repo]: https://github.com/github-samples/copilot-workshops
+[original-license]: https://github.com/github-samples/copilot-workshops/blob/main/LICENSE
