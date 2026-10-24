@@ -9,6 +9,10 @@ import { fileURLToPath } from 'node:url';
 const CLI = fileURLToPath(new URL('../mod/cli.mjs', import.meta.url));
 const LESSONS = fileURLToPath(new URL('../mod/lessons', import.meta.url));
 const SKILL = '.github/skills/implement-lite/SKILL.md';
+const DIAGRAM = 'docs/architecture.png';
+const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+// Issue #40: the diagram must stay under 2 MB, so the chat can read it.
+const MAX_DIAGRAM_BYTES = 2 * 1024 * 1024;
 
 function run(args, cwd = tmpdir(), env = process.env) {
   const { status, stdout, stderr } = spawnSync(process.execPath, [CLI, ...args], { cwd, env, encoding: 'utf8' });
@@ -83,6 +87,17 @@ test('running it again changes nothing and reports the material as up to date', 
   assert.equal(status, 0);
   assert.match(output, /up to date\s+\.github\/skills\/implement-lite\/SKILL\.md/);
   assert.doesNotMatch(output, /not overwritten/);
+});
+
+test('the images lesson brings the architecture diagram, a PNG under 2 MB', () => {
+  const dir = tailspinRepo();
+  const { status, stdout } = run(['lesson', 'images'], dir);
+  assert.equal(status, 0);
+  assert.match(stdout, /copied\s+docs\/architecture\.png/);
+  const png = readFileSync(join(dir, DIAGRAM));
+  assert.ok(png.equals(readFileSync(join(LESSONS, 'images', DIAGRAM))));
+  assert.ok(png.subarray(0, PNG_SIGNATURE.length).equals(PNG_SIGNATURE), 'PNG signature');
+  assert.ok(png.length < MAX_DIAGRAM_BYTES, `${png.length} bytes`);
 });
 
 test('usage lists setup, warmup and check', () => {
