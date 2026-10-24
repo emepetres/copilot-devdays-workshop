@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 800" font-family="Segoe Print, Comic Sans MS, Chalkboard SE, cursive" font-size="14">
+<!-- PROTOTYPE: itinerary diagram, variant B (vertical, two lanes, single session path). Throwaway. -->
+<defs><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter><marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#57606a"/></marker></defs>
+<rect width="760" height="800" fill="#fffdf7"/>
+<text x="20" y="32" font-size="20" font-weight="700" fill="#24292f">Itinerary · Wednesday 28</text>
+<text x="20" y="62" font-weight="700" fill="#0969da">BASE WORKSHOP (untouched)</text>
+<text x="400" y="62" font-weight="700" fill="#d9480f">MOD (this repo)</text>
+<g filter="url(#rough)" stroke-width="2">
+<rect x="20" y="80" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da"/>
+<rect x="400" y="80" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="20" y="160" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da"/>
+<rect x="20" y="240" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da"/>
+<rect x="400" y="320" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="400" y="400" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="20" y="480" width="300" height="50" rx="8" fill="#ddf4ff" stroke="#0969da"/>
+<rect x="400" y="560" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="400" y="640" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f"/>
+<rect x="20" y="720" width="300" height="50" rx="8" fill="#f6f8fa" stroke="#8b949e" stroke-dasharray="6 4"/>
+<rect x="400" y="720" width="340" height="50" rx="8" fill="#fff4e6" stroke="#d9480f" stroke-dasharray="6 4"/>
+</g>
+<g fill="#24292f">
+<text x="36" y="110">Lesson 0 · Prerequisites (at home)</text>
+<text x="416" y="110">Extra prerequisites (at home)</text>
+<text x="36" y="190">Lesson 1</text><text x="36" y="270">Lesson 2</text>
+<text x="416" y="350">Matt Pocock flow</text><text x="416" y="430">Image skill</text>
+<text x="36" y="510">Lesson 3 · Playwright MCP</text>
+<text x="416" y="590">Engineering Reviewer with Docling</text>
+<text x="416" y="670">Wrap-up</text>
+<text x="36" y="750" fill="#6e7781">Lessons 4, 5, 6, Foundry — skipped</text>
+<text x="416" y="750">Extra lesson (home, optional)</text>
+</g>
+<g filter="url(#rough)" stroke="#57606a" stroke-width="2.5" fill="none" marker-end="url(#o)">
+<path d="M170 130V158"/><path d="M170 210V238"/><path d="M170 290L560 318"/><path d="M570 370V398"/><path d="M570 450L170 478"/><path d="M170 530L560 558"/><path d="M570 610V638"/><path d="M570 690V718" stroke-dasharray="6 4"/>
+</g>
+<text x="20" y="790" fill="#57606a" font-size="12">Arrows = session order. Plan B for any mod lesson: continue with the base lesson that was next.</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" font-family="Segoe Print, Comic Sans MS, Chalkboard SE, cursive" font-size="14">
+<!-- PROTOTYPE: itinerary diagram, variant A (horizontal, base row + mod row). Throwaway. -->
+<defs><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+<marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8b949e"/></marker>
+<marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d9480f"/></marker>
+</defs>
+<rect width="1200" height="460" fill="#fffdf7"/>
+<text x="20" y="34" font-size="20" font-weight="700" fill="#24292f">Itinerary · Wednesday 28 — how the mod plugs into the base workshop</text>
+<text x="20" y="78" font-weight="700" fill="#0969da">BASE WORKSHOP (untouched)</text>
+<text x="20" y="260" font-weight="700" fill="#d9480f">MOD (this repo)</text>
+
+<g filter="url(#rough)" stroke="#0969da" fill="#ddf4ff" stroke-width="2">
+<rect x="40" y="100" width="120" height="70" rx="8"/>
+<rect x="180" y="100" width="120" height="70" rx="8"/>
+<rect x="320" y="100" width="120" height="70" rx="8"/>
+<rect x="460" y="100" width="120" height="70" rx="8"/>
+</g>
+<g filter="url(#rough)" stroke="#8b949e" fill="#f6f8fa" stroke-width="2" stroke-dasharray="6 4">
+<rect x="600" y="100" width="120" height="70" rx="8"/>
+<rect x="740" y="100" width="120" height="70" rx="8"/>
+<rect x="880" y="100" width="120" height="70" rx="8"/>
+<rect x="1020" y="100" width="120" height="70" rx="8"/>
+</g>
+<g text-anchor="middle" fill="#24292f">
+<text x="100" y="140">Lesson 0</text><text x="100" y="158" font-size="12">Prerequisites</text>
+<text x="240" y="140">Lesson 1</text>
+<text x="380" y="140">Lesson 2</text>
+<text x="520" y="140">Lesson 3</text><text x="520" y="158" font-size="12">Playwright MCP</text>
+<g fill="#6e7781"><text x="660" y="140">Lesson 4</text><text x="800" y="140">Lesson 5</text><text x="940" y="140">Lesson 6</text><text x="1080" y="140">Foundry</text>
+<text x="660" y="190" font-size="12">skipped</text><text x="800" y="190" font-size="12">skipped</text><text x="940" y="190" font-size="12">skipped</text><text x="1080" y="190" font-size="12">skipped</text></g>
+</g>
+<g filter="url(#rough)" stroke="#8b949e" stroke-width="2" marker-end="url(#g)" fill="none">
+<path d="M160 135H178"/><path d="M300 135H318"/><path d="M440 135H458"/><path d="M580 135H598"/><path d="M720 135H738"/><path d="M860 135H878"/><path d="M1000 135H1018"/>
+</g>
+
+<g filter="url(#rough)" stroke="#d9480f" fill="#fff4e6" stroke-width="2">
+<rect x="20" y="290" width="160" height="80" rx="8"/>
+<rect x="215" y="290" width="150" height="80" rx="8"/>
+<rect x="395" y="290" width="150" height="80" rx="8"/>
+<rect x="580" y="290" width="160" height="80" rx="8"/>
+<rect x="780" y="290" width="110" height="80" rx="8"/>
+</g>
+<rect filter="url(#rough)" x="1000" y="290" width="170" height="80" rx="8" fill="#fff4e6" stroke="#d9480f" stroke-width="2" stroke-dasharray="6 4"/>
+<g text-anchor="middle" fill="#24292f">
+<text x="100" y="325">Extra prerequisites</text><text x="100" y="345" font-size="12">install Docling + fetch material</text>
+<text x="290" y="325">Matt Pocock flow</text><text x="290" y="345" font-size="12">interleaved</text>
+<text x="470" y="325">Image skill</text><text x="470" y="345" font-size="12">interleaved</text>
+<text x="660" y="325">Engineering Reviewer</text><text x="660" y="345" font-size="12">with Docling</text>
+<text x="835" y="325">Wrap-up</text>
+<text x="1085" y="325">Extra lesson</text><text x="1085" y="345" font-size="12">at home, optional</text>
+</g>
+<g filter="url(#rough)" stroke="#d9480f" stroke-width="2.5" fill="none" marker-end="url(#o)">
+<path d="M100 290V172"/>
+<path d="M360 172L310 288"/>
+<path d="M365 330H393"/>
+<path d="M500 288L520 172"/>
+<path d="M545 172L620 288"/>
+<path d="M740 330H778"/>
+</g>
+<path filter="url(#rough)" d="M890 330H998" stroke="#8b949e" stroke-width="2" stroke-dasharray="6 4" fill="none" marker-end="url(#g)"/>
+<g fill="#d9480f"><circle cx="40" cy="100" r="13"/><circle cx="180" cy="100" r="13"/><circle cx="320" cy="100" r="13"/><circle cx="215" cy="290" r="13"/><circle cx="395" cy="290" r="13"/><circle cx="460" cy="100" r="13"/><circle cx="580" cy="290" r="13"/><circle cx="780" cy="290" r="13"/></g>
+<g fill="#fff" font-weight="700" text-anchor="middle" font-size="13"><text x="40" y="105">1</text><text x="180" y="105">2</text><text x="320" y="105">3</text><text x="215" y="295">4</text><text x="395" y="295">5</text><text x="460" y="105">6</text><text x="580" y="295">7</text><text x="780" y="295">8</text></g>
+<text x="20" y="420" fill="#57606a" font-size="13">Numbers = order followed in the session. Dashed = skipped (base) or done at home (extra lesson). Plan B for any mod lesson: continue with the base lesson that was next.</text>
+</svg>
