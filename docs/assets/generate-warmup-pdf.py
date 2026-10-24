@@ -2,14 +2,14 @@
 # requires-python = ">=3.10"
 # dependencies = ["reportlab==4.4.4", "pillow==11.3.0"]
 # ///
-"""Genera el PDF de calentamiento de Docling para la lección 0.
+"""Genera el PDF de calentamiento de Docling de los prerrequisitos extra, en inglés.
 
 Página 1: texto digital con una tabla pequeña (modelos de layout y de tablas).
 Página 2: una imagen sin capa de texto que simula un escaneado (OCR).
 
-El resultado va a la plantilla del workshop, en `scripts/docling-warmup/calentamiento.pdf`:
+El resultado va al CLI del mod, en `mod/warmup/warmup.pdf`:
 
-    uv run docs/assets/generate-warmup-pdf.py <ruta de salida>
+    uv run docs/assets/generate-warmup-pdf.py mod/warmup/warmup.pdf
 """
 
 import random
@@ -30,15 +30,15 @@ FONT = Path(reportlab.__file__).parent / "fonts" / "Vera.ttf"
 DPI = 150
 
 SCAN_LINES = [
-    ("Acta de prueba (página escaneada)", 44),
+    ("Test minutes (scanned page)", 44),
     ("", 30),
-    ("Esta página es una imagen, sin capa de texto.", 30),
-    ("Docling solo puede leerla con OCR.", 30),
+    ("This page is an image, with no text layer.", 30),
+    ("Docling can only read it with OCR.", 30),
     ("", 30),
-    # Must match CONTROL_WORD in scripts/docling-warmup/warmup.mjs of the template.
-    ("Palabra de control: Giralda", 30),
+    # Must match CONTROL_WORD in mod/warmup/warmup.mjs.
+    ("Control word: Giralda", 30),
     ("", 30),
-    ("Si el script la encuentra, el OCR funciona.", 30),
+    ("If the warm-up finds it, OCR works.", 30),
 ]
 
 
@@ -46,10 +46,10 @@ def text_page() -> list:
     styles = getSampleStyleSheet()
     table = Table(
         [
-            ["Modelo", "Para qué sirve", "Tamaño aprox."],
-            ["Layout (heron)", "Detectar títulos, párrafos y tablas", "164 MB"],
-            ["TableFormer", "Reconstruir la estructura de las tablas", "342 MB"],
-            ["RapidOCR", "Leer texto en imágenes escaneadas", "61 MB (incluido)"],
+            ["Model", "What it does", "Approx. size"],
+            ["Layout (heron)", "Detects headings, paragraphs and tables", "164 MB"],
+            ["TableFormer", "Rebuilds the structure of tables", "342 MB"],
+            ["RapidOCR", "Reads text in scanned images", "61 MB (bundled)"],
         ],
         colWidths=[4 * cm, 8 * cm, 4 * cm],
     )
@@ -63,20 +63,20 @@ def text_page() -> list:
         )
     )
     return [
-        Paragraph("Documento de calentamiento de Docling", styles["Title"]),
+        Paragraph("Docling warm-up document", styles["Title"]),
         Paragraph(
-            "Este PDF forma parte de la lección 0 del workshop "
-            "<i>Construye tu Engineering Reviewer con GitHub Copilot</i>. "
-            "Convertirlo una vez en casa descarga los modelos que Docling necesita, "
-            "para no tener que hacerlo con la wifi del evento.",
+            "This PDF is part of the extra prerequisites of the workshop "
+            "<i>Build your Engineering Reviewer</i>. "
+            "Converting it once at home downloads the models Docling needs, "
+            "so you do not have to do it over the venue wifi.",
             styles["BodyText"],
         ),
         Spacer(1, 0.5 * cm),
-        Paragraph("Modelos que se descargan", styles["Heading2"]),
+        Paragraph("Models it downloads", styles["Heading2"]),
         table,
         Spacer(1, 0.5 * cm),
         Paragraph(
-            "La página siguiente es una imagen escaneada. Sirve para comprobar que el OCR funciona.",
+            "The next page is a scanned image. It checks that OCR works.",
             styles["BodyText"],
         ),
     ]
@@ -100,7 +100,7 @@ def scanned_image() -> Image.Image:
 
 
 def main(out: Path) -> None:
-    doc = SimpleDocTemplate(str(out), pagesize=A4, title="Calentamiento de Docling")
+    doc = SimpleDocTemplate(str(out), pagesize=A4, title="Docling warm-up")
     buf = BytesIO()
     scanned_image().save(buf, format="JPEG", quality=70)
     scan = ImageReader(BytesIO(buf.getvalue()))
