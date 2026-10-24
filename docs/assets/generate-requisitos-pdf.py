@@ -2,15 +2,16 @@
 # requires-python = ">=3.10"
 # dependencies = ["reportlab==4.4.4"]
 # ///
-"""Genera el PDF de requisitos de Tailspin Toys que revisa el Engineering Reviewer (lección 6).
+"""Genera el PDF de requisitos de Tailspin Toys, en inglés, que revisa el Engineering Reviewer
+(lección *The Engineering Reviewer with Docling MCP*).
 
-Lleva sembradas las inconsistencias 4 (RF-03) y 5 (RNF-01). El resto de requisitos
+Lleva sembradas las inconsistencias 4 (FR-03) y 5 (NFR-01). El resto de requisitos
 coincide con el código de la plantilla, para que no haya falsos positivos. La clave de
 respuestas está en `docs/inconsistencias-sembradas.md`.
 
-El resultado va a la plantilla del workshop, en `docs/requisitos.pdf`:
+El resultado va al material de la lección `docling`:
 
-    uv run docs/assets/generate-requisitos-pdf.py <ruta de salida>
+    uv run docs/assets/generate-requisitos-pdf.py mod/lessons/docling/docs/requirements.pdf
 """
 
 import sys
@@ -18,63 +19,61 @@ from pathlib import Path
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-TITLE = "Especificación de requisitos del catálogo"
-VERSION = "v1.2 · 30 de septiembre de 2026"
+TITLE = "Catalog Requirements Specification"
+VERSION = "v1.2 · September 30, 2026"
 
 HISTORY = [
-    ["Versión", "Fecha", "Cambios"],
-    ["1.0", "12/05/2026", "Primera versión aprobada."],
-    ["1.1", "03/07/2026", "Añade la página de detalle y la página 404."],
-    ["1.2", "30/09/2026", "Añade los apartados 4 y 5."],
+    ["Version", "Date", "Changes"],
+    ["1.0", "2026-05-12", "First approved version."],
+    ["1.1", "2026-07-03", "Adds the detail page and the 404 page."],
+    ["1.2", "2026-09-30", "Adds sections 4 and 5."],
 ]
 
 GLOSSARY = [
-    ("Juego", "Título de mesa con temática de desarrollo de software que busca financiación en la plataforma."),
-    ("Categoría", "Género del juego, como Strategy, Card Game o Puzzle. Sirve para agrupar el catálogo."),
-    ("Editor", "Estudio o empresa que publica el juego y solicita la financiación."),
-    ("Valoración", "Puntuación del juego. Es opcional: un juego nuevo puede no tenerla."),
+    ("Game", "Board game themed around software development that seeks funding on the platform."),
+    ("Category", "Genre of the game, such as Strategy, Card Game or Puzzle. It groups the catalog."),
+    ("Publisher", "Studio or company that publishes the game and asks for the funding."),
+    ("Rating", "Score of the game. It is optional: a new game may not have one."),
 ]
 
-# (id, requirement). RF-03 is seeded inconsistency 4.
+# (id, requirement). FR-03 is seeded inconsistency 4.
 FUNCTIONAL = [
-    ("RF-01", "La página principal muestra todos los juegos del catálogo ordenados alfabéticamente por título."),
-    ("RF-02", "Cada tarjeta del catálogo muestra el título, las categorías, el editor y el inicio de la descripción, "
-              "y enlaza con la página de detalle del juego."),
-    ("RF-03", "Un juego puede pertenecer a varias categorías. La tarjeta y la página de detalle muestran "
-              "todas las categorías del juego."),
-    ("RF-04", "Cada juego tiene un único editor."),
-    ("RF-05", "La página de detalle de cada juego está en la ruta /game/{id} y muestra el título, la valoración, "
-              "las categorías, el editor y la descripción completa."),
-    ("RF-06", "La página de detalle incluye el botón «Support This Game». En esta versión el botón no tramita "
-              "aportaciones (ver apartado 5)."),
-    ("RF-07", "Si un juego no tiene valoración, no se muestra ninguna valoración en su página de detalle."),
-    ("RF-08", "El sitio incluye una página «About» que presenta Tailspin Toys."),
-    ("RF-09", "Una ruta inexistente muestra una página 404 con el diseño del sitio."),
+    ("FR-01", "The home page shows every game in the catalog, sorted alphabetically by title."),
+    ("FR-02", "Each card in the catalog shows the title, the categories, the publisher and the start of the "
+              "description, and links to the detail page of the game."),
+    ("FR-03", "A game can belong to several categories. The card and the detail page show all the "
+              "categories of the game."),
+    ("FR-04", "Each game has exactly one publisher."),
+    ("FR-05", "The detail page of each game is at the route /game/{id} and shows the title, the rating, "
+              "the categories, the publisher and the full description."),
+    ("FR-06", "The detail page includes the “Support This Game” button. In this version the button "
+              "does not process contributions (see section 5)."),
+    ("FR-07", "If a game has no rating, its detail page shows no rating."),
+    ("FR-08", "The site includes an “About” page that introduces Tailspin Toys."),
+    ("FR-09", "A route that does not exist shows a 404 page with the design of the site."),
 ]
 
-# (id, requirement). RNF-01 is seeded inconsistency 5.
+# (id, requirement). NFR-01 is seeded inconsistency 5.
 NON_FUNCTIONAL = [
-    ("RNF-01", "El catálogo se actualiza en tiempo real: cualquier cambio en los datos de un juego se ve en la web "
-               "en menos de 5 segundos, sin volver a desplegar el sitio."),
-    ("RNF-02", "Los datos del catálogo se guardan en una base de datos SQLite local, que se carga a partir del "
-               "fichero games.csv."),
-    ("RNF-03", "La valoración de cada juego se calcula de forma determinista, para que dos compilaciones "
-               "del sitio produzcan el mismo resultado."),
-    ("RNF-04", "El sitio cumple las pautas WCAG 2.1 de nivel AA y se puede recorrer entero con el teclado."),
-    ("RNF-05", "El catálogo se adapta al ancho de pantalla: una columna en móvil, dos en tableta y tres en escritorio."),
-    ("RNF-06", "Las pruebas unitarias cubren la capa de datos y las pruebas end-to-end se ejecutan contra el "
-               "sitio compilado."),
+    ("NFR-01", "The catalog updates in real time: any change to the data of a game shows on the website "
+               "in less than 5 seconds, without redeploying the site."),
+    ("NFR-02", "The catalog data is stored in a local SQLite database, loaded from the games.csv file."),
+    ("NFR-03", "The rating of each game is computed deterministically, so that two builds of the site "
+               "produce the same result."),
+    ("NFR-04", "The site meets WCAG 2.1 level AA and can be fully navigated with the keyboard."),
+    ("NFR-05", "The catalog adapts to the screen width: one column on mobile, two on tablet and three on desktop."),
+    ("NFR-06", "Unit tests cover the data layer, and end-to-end tests run against the built site."),
 ]
 
 OUT_OF_SCOPE = [
-    "Búsqueda, filtrado, ordenación y paginación del catálogo: se planifican para la versión 1.3.",
-    "Páginas propias de cada editor.",
-    "Tramitación de aportaciones y pasarela de pago.",
-    "Cuentas de usuario y valoraciones de los usuarios.",
+    "Search, filtering, sorting and pagination of the catalog: they are planned for version 1.3.",
+    "Pages of their own for each publisher.",
+    "Processing contributions and a payment gateway.",
+    "User accounts and user ratings.",
 ]
 
 
@@ -86,42 +85,44 @@ TABLE_STYLE = [
 ]
 
 
-def requirements_table(rows: list[tuple[str, str]], styles) -> Table:
-    data = [["ID", "Requisito"]] + [[rid, Paragraph(text, styles["BodyText"])] for rid, text in rows]
-    table = Table(data, colWidths=[2 * cm, 14 * cm], repeatRows=1)
-    table.setStyle(TableStyle(TABLE_STYLE + [("VALIGN", (0, 0), (-1, -1), "TOP")]))
-    return table
+def requirements(rows: list[tuple[str, str]], styles) -> list[Paragraph]:
+    """One paragraph per requirement, not a table: docling-mcp 3.3.0 only searches and reads
+    text items by anchor, so a requirement inside a table cell would be out of the agent's reach."""
+    style = ParagraphStyle("Requirement", parent=styles["BodyText"], spaceAfter=4)
+    return [Paragraph(f"<b>{rid}.</b> {text}", style) for rid, text in rows]
 
 
 def story() -> list:
     styles = getSampleStyleSheet()
     body = styles["BodyText"]
     h2 = styles["Heading2"]
+    # A real list, so Docling reads one list item per bullet.
+    bullet = ParagraphStyle("Bullet", parent=body, leftIndent=0.6 * cm, bulletIndent=0.1 * cm)
 
     history = Table(HISTORY, colWidths=[2 * cm, 3 * cm, 11 * cm])
     history.setStyle(TableStyle(TABLE_STYLE))
 
     return [
         Paragraph(f"Tailspin Toys · {TITLE}", styles["Title"]),
-        Paragraph(f"{VERSION} · Estado: aprobado por el comité de producto", body),
+        Paragraph(f"{VERSION} · Status: approved by the product committee", body),
         Spacer(1, 0.4 * cm),
         history,
-        Paragraph("1. Introducción", h2),
+        Paragraph("1. Introduction", h2),
         Paragraph(
-            "Tailspin Toys es una plataforma de crowdfunding de juegos de mesa con temática de desarrollo "
-            "de software. Este documento recoge los requisitos del sitio web del catálogo: qué debe mostrar "
-            "y con qué calidad. Lo mantiene el equipo de producto y sirve de referencia al equipo web.",
+            "Tailspin Toys is a crowdfunding platform for board games themed around software development. "
+            "This document sets out the requirements of the catalog website: what it must show and to what "
+            "quality. The product team maintains it, and the web team uses it as its reference.",
             body,
         ),
-        Paragraph("2. Glosario", h2),
+        Paragraph("2. Glossary", h2),
         *[Paragraph(f"<b>{term}</b>: {definition}", body) for term, definition in GLOSSARY],
-        Paragraph("3. Requisitos funcionales", h2),
-        requirements_table(FUNCTIONAL, styles),
-        Paragraph("4. Requisitos no funcionales", h2),
-        requirements_table(NON_FUNCTIONAL, styles),
-        Paragraph("5. Fuera de alcance", h2),
-        Paragraph("Esta versión no incluye:", body),
-        *[Paragraph(f"• {item}", body) for item in OUT_OF_SCOPE],
+        Paragraph("3. Functional requirements", h2),
+        *requirements(FUNCTIONAL, styles),
+        Paragraph("4. Non-functional requirements", h2),
+        *requirements(NON_FUNCTIONAL, styles),
+        Paragraph("5. Out of scope", h2),
+        Paragraph("This version does not include:", body),
+        *[Paragraph(item, bullet, bulletText="•") for item in OUT_OF_SCOPE],
     ]
 
 
@@ -130,7 +131,7 @@ def footer(canvas, doc) -> None:
     canvas.setFont("Helvetica", 8)
     canvas.setFillColor(colors.HexColor("#555555"))
     canvas.drawString(2 * cm, 1.2 * cm, f"Tailspin Toys · {TITLE} · {VERSION}")
-    canvas.drawRightString(A4[0] - 2 * cm, 1.2 * cm, f"Página {doc.page}")
+    canvas.drawRightString(A4[0] - 2 * cm, 1.2 * cm, f"Page {doc.page}")
     canvas.restoreState()
 
 
@@ -139,7 +140,7 @@ def main(out: Path) -> None:
         str(out),
         pagesize=A4,
         title=f"Tailspin Toys · {TITLE}",
-        author="Equipo de producto de Tailspin Toys",
+        author="Tailspin Toys product team",
         leftMargin=2 * cm,
         rightMargin=2 * cm,
         topMargin=2 * cm,

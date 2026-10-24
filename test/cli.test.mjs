@@ -100,6 +100,28 @@ test('the images lesson brings the architecture diagram, a PNG under 2 MB', () =
   assert.ok(png.length < MAX_DIAGRAM_BYTES, `${png.length} bytes`);
 });
 
+// The seeded documents and their Docling Markdown, with an inconsistency each (answer key:
+// docs/inconsistencias-sembradas.md).
+const SEEDED_DOCUMENTS = {
+  'docs/requirements.pdf': 'docs/reviews/_docling/requirements.md',
+  'docs/meeting-minutes.pdf': 'docs/reviews/_docling/meeting-minutes.md',
+};
+
+test('the docling lesson brings the seeded documents in English, with their converted Markdown', () => {
+  const dir = tailspinRepo();
+  const { status, stdout } = run(['lesson', 'docling'], dir);
+  assert.equal(status, 0);
+  for (const [pdf, markdown] of Object.entries(SEEDED_DOCUMENTS)) {
+    assert.match(stdout, new RegExp(`copied\\s+${pdf.replace('.', '\\.')}`));
+    assert.equal(readFileSync(join(dir, pdf)).subarray(0, 5).toString(), '%PDF-', pdf);
+    assert.ok(readFileSync(join(dir, markdown)).equals(readFileSync(join(LESSONS, 'docling', markdown))), markdown);
+  }
+  const text = (path) => readFileSync(join(dir, path), 'utf8').replace(/\s+/g, ' ');
+  assert.match(text(SEEDED_DOCUMENTS['docs/requirements.pdf']), /A game can belong to several categories/); // 4
+  assert.match(text(SEEDED_DOCUMENTS['docs/requirements.pdf']), /The catalog updates in real time/); // 5
+  assert.match(text(SEEDED_DOCUMENTS['docs/meeting-minutes.pdf']), /scale of 1 to 10/); // 6
+});
+
 test('usage lists setup, warmup and check', () => {
   const { stdout } = run(['--help']);
   assert.match(stdout, /^\s+setup\s/m);

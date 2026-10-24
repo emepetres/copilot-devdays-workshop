@@ -1,12 +1,13 @@
-// Converts the documents with the seeded inconsistencies 4–6 with Docling (plan B of lesson 6)
-// and checks that the seeded text survives the conversion, including the OCR of the scan.
+// Converts the documents with the seeded inconsistencies 4–6 with Docling (the Markdown the
+// Engineering Reviewer can fall back on) and checks that the seeded text survives the
+// conversion, including the OCR of the scan.
 //
-//     node docs/assets/convert-seeded-docs.mjs <ruta de la plantilla del workshop>
+//     node docs/assets/convert-seeded-docs.mjs mod/lessons/docling
 //
-// Reads `docs/requisitos.pdf` and `docs/acta-reunion.pdf` of the template and writes the
-// Markdown to `docs/reviews/_docling/`. Starts docling-mcp-server over stdio in local mode,
-// like `scripts/docling-warmup/warmup.mjs` of the template, but adds the `generation` group,
-// which owns the Markdown export. Speaks MCP directly, so it needs no dependencies.
+// Reads `docs/requirements.pdf` and `docs/meeting-minutes.pdf` of that folder and writes the
+// Markdown to its `docs/reviews/_docling/`. Starts docling-mcp-server over stdio in local mode,
+// like `mod/warmup/warmup.mjs`, but with the `generation` group, which owns the Markdown export.
+// Speaks MCP directly, so it needs no dependencies.
 
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
@@ -20,29 +21,29 @@ const SERVER_ARGS = ["--transport", "stdio", "conversion", "generation"];
 // and the answer key in docs/inconsistencias-sembradas.md.
 const DOCUMENTS = [
   {
-    pdf: "requisitos.pdf",
-    markdown: "requisitos.md",
+    pdf: "requirements.pdf",
+    markdown: "requirements.md",
     expected: [
-      "Un juego puede pertenecer a varias categorías", // 4
-      "El catálogo se actualiza en tiempo real", // 5
+      "A game can belong to several categories", // 4
+      "The catalog updates in real time", // 5
     ],
   },
   {
-    pdf: "acta-reunion.pdf",
-    markdown: "acta-reunion.md",
+    pdf: "meeting-minutes.pdf",
+    markdown: "meeting-minutes.md",
     expected: [
-      "escala de 1 a 10", // 6
-      "Implementado en el sprint 14", // 6
+      "scale of 1 to 10", // 6
+      "Implemented in sprint 14", // 6
     ],
   },
 ];
 
-const template = process.argv[2];
-if (!template) {
-  console.error("Uso: node docs/assets/convert-seeded-docs.mjs <ruta de la plantilla del workshop>");
+const root = process.argv[2];
+if (!root) {
+  console.error("Uso: node docs/assets/convert-seeded-docs.mjs <carpeta con docs/, como mod/lessons/docling>");
   process.exit(2);
 }
-const docsDir = join(resolve(template), "docs");
+const docsDir = join(resolve(root), "docs");
 const outDir = join(docsDir, "reviews", "_docling");
 for (const { pdf } of DOCUMENTS) {
   if (!existsSync(join(docsDir, pdf))) {
@@ -60,7 +61,7 @@ const server = spawn(SERVER, SERVER_ARGS, {
 });
 
 server.on("error", (err) => {
-  const hint = err.code === "ENOENT" ? ` Instálalo como en la lección 0: uv tool install "docling-mcp[local]==3.3.0".` : "";
+  const hint = err.code === "ENOENT" ? ` Instálalo como en los Extra prerequisites: uv tool install "docling-mcp[local]==3.3.0".` : "";
   console.error(`❌ No se pudo arrancar ${SERVER}: ${err.message}.${hint}`);
   process.exit(1);
 });
