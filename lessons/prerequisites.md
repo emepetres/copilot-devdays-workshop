@@ -26,7 +26,9 @@ Pick **one** of the two routes. Both start with the repo you created from the te
 The workshop needs the same Copilot plans as the base workshop: **Student, Pro, Pro+, Business or Enterprise**. **Copilot Free is not supported.** If you are a student, apply for the [GitHub Student Developer Pack][student-pack], which includes Copilot Student. Verification can take a few days, so do it as soon as possible.
 
 > [!IMPORTANT]
-> Always pick the **Auto** model in the chat, **even when a base exercise asks for another one**. Exercise 2 asks for Claude Sonnet 4.5, which has been retired. The whole workshop has been tested with *Auto*, and it is the only option with Copilot Student.
+> Always pick the **Auto** model in the chat, optimized for **Efficiency** (the *Optimize for* option of *Auto* in the model picker), **even when a base exercise asks for another model**. Exercise 2 asks for Claude Sonnet 4.5, which has been retired. The whole workshop has been tested with *Auto* and *Efficiency*, and *Auto* is the only option with Copilot Student.
+
+Besides the model, each chat has a **mode**, which you pick in the chat input: **Interactive** (the agent works and stops when it needs you), **Plan** (it asks and proposes a plan before changing anything) or **Autopilot** (it approves every tool call and answers its own questions until it finishes). Each lesson tells you which one to use.
 
 ## Route A: local, without a container
 
@@ -34,7 +36,7 @@ Every command runs in a terminal: **Windows Terminal** (PowerShell) on Windows o
 
 ### 1. VS Code
 
-Install or update [VS Code][vscode] to version **1.112 or later**. Check it in **Help** > **About** (on macOS, **Code** > **About Visual Studio Code**). Copilot Chat is built in: open the **Chat** view from the Copilot icon in the title bar and sign in with your GitHub account.
+Install or update [VS Code][vscode] to version **1.143 or later**, the version the workshop was rehearsed with. Older versions don't have the chat modes the lessons use. Check it in **Help** > **About** (on macOS, **Code** > **About Visual Studio Code**). Copilot Chat is built in: open the **Chat** view from the Copilot icon in the title bar and sign in with your GitHub account.
 
 ### 2. Git and Node.js
 
@@ -230,7 +232,7 @@ You are ready for the workshop. You have:
 - the tools of your route: VS Code, Node.js, git and `gh`, or your codespace;
 - the material of the mod lessons in your repo, uncommitted;
 - Docling installed and its models downloaded;
-- agent plugins enabled and the *Auto* model in mind;
+- agent plugins enabled, and the *Auto* model with *Efficiency* in mind;
 - `check` all green.
 
 On the day of the workshop you will start with *[Exercise 1 · Custom instructions][ex1]*.

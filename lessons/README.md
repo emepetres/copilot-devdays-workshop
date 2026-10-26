@@ -5,6 +5,9 @@ slug: index
 
 This is **a mod of the Dev Days workshop**. You follow the [base workshop][base] as it is, the VS Code track of *Real-world development* with Tailspin Toys, and at set points you switch to the lessons published here. Along the way you adopt Matt Pocock's workflow and build the **Engineering Reviewer**: a custom agent that reads the requirements PDF, a scanned meeting minutes document, the architecture diagram and the code, and tells you where they disagree.
 
+> [!IMPORTANT]
+> **You need GitHub Copilot to do this workshop**: a GitHub account with **Copilot Student** (free for verified students), **Pro**, **Pro+**, **Business** or **Enterprise**. Copilot Free is not enough. See the *[Extra prerequisites](prerequisites/#copilot-plan-and-model)*.
+
 The base lessons stay on the base site, in English. The mod lessons, its extra prerequisites and its material live in this repo, also in English. You can talk to the agent in Spanish.
 
 ![Itinerary: the base workshop on top, the mod lessons below, with numbered arrows showing the order to follow.](_images/itinerary-horizontal.svg)

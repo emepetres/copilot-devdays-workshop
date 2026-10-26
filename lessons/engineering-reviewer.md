@@ -13,7 +13,7 @@ Plan for **about 28 minutes**, plus **about 7 at home** for the token demo.
 >
 > - Branch `sorting`, with the `review-diagram` skill and its report committed, from *[A skill that reads images](../image-skill/)*.
 > - Docling installed and `check` all green, from the *[Extra prerequisites](../prerequisites/)*.
-> - The *Auto* model selected in the chat.
+> - The **Auto** model, optimized for **Efficiency**, selected in the chat.
 
 > [!TIP]
 > You can write to the agent in Spanish. The skill and the agent you write are in English, but the agent answers in the language you use.
@@ -69,7 +69,7 @@ Copilot can't read a PDF on its own, let alone a scanned one. [Docling][docling]
 
 The reviewer has two pieces, and you sharpen both in one conversation.
 
-1. Open a **New Chat** and select **Agent** and the **Auto** model.
+1. Open a **New Chat** and select **Agent**, the **Auto** model and the **Interactive** mode, so that the agent asks you instead of answering itself.
 2. Send:
 
    ```text
@@ -101,16 +101,44 @@ The reviewer has two pieces, and you sharpen both in one conversation.
    - The body names both skills, the sources, the report and the sentence about the deliverable.
 
 > [!NOTE]
-> **Skill or custom agent?** You need both, because they do different jobs.
+> **Skill or custom agent?** Here you need both, because in Copilot they do different jobs.
 >
-> - A **skill** is *how to do* a task. The agent loads it only when the task needs it, and it works in any tool that reads skills, such as Copilot or Claude Code.
-> - A **custom agent** is *a role*, with its own instructions and its own set of tools. You pick it in the chat, and the agent can only use the tools in its `tools:` list.
-> - A skill can't do what the agent does: it doesn't remove tools from the context or restrict what the agent can run. Here the agent sees only four Docling tools and has no terminal at all. Even if you turn on the Docling tool that dumps whole documents, as you will at home, the agent can't call it.
-> - Claude Code has the same idea under another name: **subagents**, in `.claude/agents/`.
+> - A **skill** is *how to do* a task. The agent loads it only when the task needs it, and it works in any tool that reads skills, such as Copilot, Claude Code or Codex.
+> - A **custom agent** is *a role*, with its own instructions, its own set of tools and, if you want, its own model. You pick it in the chat, and it can only use the tools in its `tools:` list.
+> - In Copilot, a skill can't do what the agent does: it can't remove tools or restrict what the agent can run. Here the agent sees only four Docling tools and has no terminal at all. Even if you turn on the Docling tool that dumps whole documents, as you will at home, the agent can't call it.
+> - Picked from the dropdown, the custom agent works in your conversation, with the same context. It only gets a context of its own when another agent calls it as a **subagent**.
+
+<details>
+<summary>Go deeper: when do you need an agent?</summary>
+
+Start with a skill. A skill holds the *how*: steps, checklists, scripts, templates. A general agent with good skills covers most workflows, and in some tools a skill can even run in a context of its own. The author of this workshop builds all kinds of workflows in Claude Code with skills alone, and has never needed a custom agent there.
+
+Create an agent when you need something about *who does the work* that a skill can't guarantee:
+
+- **A tool boundary that is enforced and lasts**, as in least privilege: a reviewer that must never edit the code or run commands.
+- **A role that the user picks and keeps** for the whole conversation, or handoffs from one role to another.
+- **A named worker** with a fixed model or fixed permissions, which other agents call as a subagent.
+
+Where the line falls depends on the tool:
+
+| | Copilot in VS Code | Claude Code | Codex |
+|---|---|---|---|
+| Agent file | `.github/agents/*.agent.md` | `.claude/agents/*.md` (subagents) | `.codex/agents/*.toml` |
+| How an agent is used | You pick it in the dropdown, or another agent calls it as a subagent | The main agent delegates to it as a subagent; `claude --agent` makes it the main one | Only as a subagent, when your prompt, `AGENTS.md` or a skill asks for one |
+| Its own context | Only as a subagent | Yes | Yes |
+| A skill can restrict tools | No | For one turn, with `disallowed-tools`; `allowed-tools` only pre-approves | No |
+| A skill can set the model | No | Yes | No |
+| A skill can run in its own context | `context: fork`, experimental | `context: fork`, pointing at a subagent with `agent:` | No field for it, but it can ask for subagents |
+
+In Copilot, skills can't restrict tools or set the model, so a read-only Engineering Reviewer has to be an agent. In Claude Code you would write it as a skill with `context: fork`, pointing at a subagent that holds the list of tools: the subagent is still there, but you only ever call the skill.
+
+So the same job lands in a different piece. The Engineering Reviewer **orchestrates**: its body tells it to use `review-documents` and `review-diagram`, and it reads both in its own conversation. With the `agent` tool in its `tools:`, it could also start subagents, and `agents: [...]` would limit which ones. In Claude Code, that orchestrator is usually a skill, such as an `/audit` skill that loads other skills and hands work to subagents, and the subagent only brings the tool boundary. In Copilot, the custom agent does both. Copilot also has **prompt files** (`.github/prompts/*.prompt.md`), which you run with `/name` and which accept `tools:`, `model:` and `agent:`. They are closer to a Claude Code skill than an agent is, but the agent never loads them on its own from their description.
+
+</details>
 
 ## 5. Run the review
 
-1. Open a **New Chat**. In the agent dropdown, where it says **Agent**, select **engineering-reviewer**. Keep **Auto**.
+1. Open a **New Chat**. In the agent dropdown, where it says **Agent**, select **engineering-reviewer**. Keep **Auto** and **Interactive**: you want to see and allow each Docling call.
 2. Send:
 
    ```text
@@ -299,6 +327,7 @@ If you want to see the same reviewer built in code, outside VS Code, go on to *[
 - [Docling MCP][docling-mcp]
 - [Docling][docling]
 - [Subagents in Claude Code][claude-subagents]
+- [Skills in Claude Code][claude-skills]
 
 [ex3]: https://github-samples.github.io/copilot-workshops/real-world-development/vscode/3-mcp/
 [mcp]: https://modelcontextprotocol.io/
@@ -307,4 +336,5 @@ If you want to see the same reviewer built in code, outside VS Code, go on to *[
 [vscode-agents]: https://code.visualstudio.com/docs/copilot/customization/custom-agents
 [vscode-skills]: https://code.visualstudio.com/docs/copilot/customization/agent-skills
 [vscode-mcp]: https://code.visualstudio.com/docs/copilot/customization/mcp-servers
-[claude-subagents]: https://docs.anthropic.com/en/docs/claude-code/sub-agents
+[claude-subagents]: https://code.claude.com/docs/en/sub-agents
+[claude-skills]: https://code.claude.com/docs/en/skills
