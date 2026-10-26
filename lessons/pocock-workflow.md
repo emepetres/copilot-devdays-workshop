@@ -120,7 +120,7 @@ The backlog has an issue called **"Allow users to sort the game list"**. Its acc
    - A new comment on the issue in GitHub, with the refined spec.
 
 > [!TIP]
-> **Grilling needs a stronger model than building.** Grilling is reasoning: spotting the open decisions, foreseeing edge cases, recommending an answer. It pays off with a more capable model or more thinking effort, such as *Auto* optimized for **Intelligence**, or a higher **Thinking effort** in the model picker. Implementing an agreed spec, with tests that check the result, works well with smaller models. In the workshop you keep *Auto* with *Efficiency* all the time; in your own projects, try a stronger model for the grilling.
+> **Grilling needs a stronger model than building.** Grilling is reasoning: spotting the open decisions, foreseeing edge cases, recommending an answer. In Matt Pocock's words, *"Grilling depends on the model's own knowledge of how systems break, so use your best one"* ([grill-me][pocock-grill-me]). It pays off with a more capable model or more thinking effort, such as *Auto* optimized for **Intelligence**, or a higher **Thinking effort** in the model picker. Implementing an agreed spec, with tests that check the result, works well with smaller models. In the workshop you keep *Auto* with *Efficiency* all the time; in your own projects, try a stronger model for the grilling.
 
 > [!NOTE]
 > **Why name `/grilling` and `/domain-modeling` in the prompt?** `grill-with-docs` is only one line: *"Call the Skill tool twice, for 'grilling' and 'domain-modeling'"*. Claude Code has a **Skill tool**, a tool the model calls with a skill name to load it, so one skill can load another. Copilot doesn't have it by default: it gives the agent the list of your skills, with the path of each `SKILL.md`, and the agent reads the one it needs with its file-reading tool. You see it in the chat as *"Read skill …"*. "Call the Skill tool" points at nothing, so you name the skills in the prompt and the agent reads them ([an example in mattpocock/skills#1052][issue-1052-copilot]). If you see every question at once, with no recommendations and no `GLOSSARY.md`, the agent didn't read them: ask it to.
@@ -151,6 +151,7 @@ Copilot has its own way to think before building: **Plan mode**. Plan is one of 
 
 | | Plan mode | `/grill-with-docs` in Interactive mode |
 |---|---|---|
+| Who decides | The agent drafts the plan, you approve it | You decide, one question at a time; the agent interviews you |
 | Who asks | The agent asks a few clarifying questions, then proposes a plan | The agent asks you, round by round, with its recommendation, until nothing is open |
 | What drives the questions | Copilot's built-in planner | A skill that you can read and change |
 | What is left behind | The plan, in the conversation | `GLOSSARY.md`, ADRs and the spec in the issue |
@@ -160,6 +161,8 @@ Both are valid. Here you use grilling because its output stays in the repo and i
 
 <details>
 <summary>Go deeper: the three modes</summary>
+
+**Why not grill in Plan mode?** Plan mode asks only when it finds a big ambiguity, and then hurries to write the plan. Matt Pocock's advice is direct: *"Leave plan mode off. Plan mode makes the agent hurry to produce a plan, when you want it to keep asking questions"* ([grill-me][pocock-grill-me]). A plan hides dozens of small decisions that you approve by skimming; grilling brings them up one by one, so that you and the agent share the same idea of what to build. Once you agree, the plan is just a summary of the conversation.
 
 - **Interactive.** The agent works, asks you to approve the tools that your permission level doesn't allow, and stops when it needs a decision from you. Its questions reach you through the `askQuestions` tool, the carousel of questions in the chat.
 - **Plan.** The agent researches and asks, but doesn't change files. It ends with a plan that you approve, reject or hand over to implement.
@@ -288,3 +291,4 @@ Next, *[Exercise 3 · Testing your feature with the Playwright MCP server][ex3]*
 [vscode-skills]: https://code.visualstudio.com/docs/copilot/customization/agent-skills
 [vscode-plugins]: https://code.visualstudio.com/docs/copilot/customization/agent-plugins
 [vscode-plan]: https://code.visualstudio.com/docs/agents/run/planning
+[pocock-grill-me]: https://github.com/mattpocock/skills/blob/main/docs/productivity/grill-me.md

@@ -132,6 +132,8 @@ Where the line falls depends on the tool:
 
 In Copilot, skills can't restrict tools or set the model, so a read-only Engineering Reviewer has to be an agent. In Claude Code you would write it as a skill with `context: fork`, pointing at a subagent that holds the list of tools: the subagent is still there, but you only ever call the skill.
 
+So the same job lands in a different piece. The Engineering Reviewer **orchestrates**: its body tells it to use `review-documents` and `review-diagram`, and it reads both in its own conversation. With the `agent` tool in its `tools:`, it could also start subagents, and `agents: [...]` would limit which ones. In Claude Code, that orchestrator is usually a skill, such as an `/audit` skill that loads other skills and hands work to subagents, and the subagent only brings the tool boundary. In Copilot, the custom agent does both. Copilot also has **prompt files** (`.github/prompts/*.prompt.md`), which you run with `/name` and which accept `tools:`, `model:` and `agent:`. They are closer to a Claude Code skill than an agent is, but the agent never loads them on its own from their description.
+
 </details>
 
 ## 5. Run the review
