@@ -4,7 +4,7 @@ title: "A skill that reads images"
 
 Do this after *[Exercise 3 · Testing your feature with the Playwright MCP server][ex3]*, or after *[Matt Pocock's workflow](../pocock-workflow/)* if you skipped it.
 
-**Goal:** write your own skill, `review-diagram`, that looks at the architecture diagram of Tailspin Toys and checks it against the code. You sharpen the idea with `/grill-with-docs`, write the skill with `/writing-for-agents` and run it. It is the first piece of the **Engineering Reviewer**.
+**Goal:** write your own skill, `review-diagram`, that **sees** the architecture diagram of Tailspin Toys and checks it against the code. No text is extracted from the image: the model looks at the picture and understands its boxes, arrows and labels, as you do. You sharpen the idea with `/grill-with-docs`, write the skill with `/writing-for-agents` and run it. It is the first piece of the **Engineering Reviewer**.
 
 Plan for **about 25 minutes**.
 
@@ -12,7 +12,7 @@ Plan for **about 25 minutes**.
 > **Where you should be**
 >
 > - Branch `sorting`, with the filtering and the sorting committed, from *[Matt Pocock's workflow](../pocock-workflow/)*. If you did Exercise 3, its changes are committed too, and the branch is published with a pull request.
-> - The *Auto* model selected in the chat.
+> - The **Auto** model, optimized for **Efficiency**, selected in the chat.
 
 > [!TIP]
 > You can write to the agent in Spanish. The skill you write is in English, but the agent answers in the language you use.
@@ -33,7 +33,7 @@ Open `docs/architecture.png` in VS Code. It is a whiteboard sketch of how Tailsp
 
 Before writing a skill that depends on it, check that the agent can **see** an image on disk. Copilot can read images in every plan, as long as the model supports it, and *Auto* picks one that does.
 
-1. Open a **New Chat** and select **Agent** and the **Auto** model.
+1. Open a **New Chat** and select **Agent**, the **Auto** model and the **Interactive** mode.
 2. Send:
 
    ```text
@@ -43,13 +43,16 @@ Before writing a skill that depends on it, check that the agent can **see** an i
 3. Check that the answer names the boxes you see, such as *Astro site* and *Browser*. Hover over the answer to see which model *Auto* chose.
 
 > [!NOTE]
+> **What just happened?** The agent read a PNG, with no text inside, and told you what it shows. The model behind *Auto* has **vision**: it receives the image itself and interprets the shapes, the arrows and the hand-drawn labels, the way you would. That is what makes this skill possible: any visual artifact, such as a diagram, a screenshot of the app or a photo of a whiteboard, can be checked against the code. In the next lesson you will see the other side: a scanned PDF doesn't reach the model as an image, so you need Docling and its OCR to read it.
+
+> [!NOTE]
 > **If the agent says it can't see the image**, attach it by hand: drag `docs/architecture.png` from the Explorer onto the chat input, or select **Add Context** > **Files & Folders** and pick it. Then send the prompt again. Reading images from disk needs VS Code 1.112 or later.
 
 ## 3. Sharpen the idea with `/grill-with-docs`
 
 You know the method from *[Matt Pocock's workflow](../pocock-workflow/)*: instead of asking for the skill right away, let the agent grill you about it first.
 
-1. Open a **New Chat**, still in **Agent** with **Auto**.
+1. Open a **New Chat**, still in **Agent**, **Auto** and **Interactive**. Remember: in Autopilot, the agent would answer its own questions.
 2. Send:
 
    ```text
@@ -83,7 +86,7 @@ You know the method from *[Matt Pocock's workflow](../pocock-workflow/)*: instea
 
 ## 5. Run it
 
-1. Open a **New Chat**, still in **Agent** with **Auto**. Starting fresh proves that the skill works on its own, without the conversation that created it.
+1. Open a **New Chat**, still in **Agent**, **Auto** and **Interactive**. Starting fresh proves that the skill works on its own, without the conversation that created it.
 2. Send:
 
    ```text
@@ -181,9 +184,9 @@ f3c9a1e Set up Matt Pocock's skills and the glossary
 
 ## Summary
 
-You wrote your first skill from scratch, the way you will write the rest. You:
+You wrote your first skill from scratch, the way you will write the rest, and it is a skill that sees. You:
 
-- checked that the agent can see an image on disk, and how to attach it when it can't;
+- checked that the agent can see and understand an image on disk, and how to attach it when it can't;
 - sharpened the skill with `/grill-with-docs` before writing a line of it;
 - wrote it with `/writing-for-agents`, making clear that its report is a deliverable;
 - ran it in a fresh chat and checked its findings against the code.
