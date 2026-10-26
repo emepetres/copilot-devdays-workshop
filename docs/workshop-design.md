@@ -68,7 +68,7 @@ El diagrama está prototipado en la rama `prototype/itinerary-diagram` ([decisi�
 - la demo A/B de tokens de Docling;
 - la ampliación del Engineering Reviewer para leer issues con `gh`;
 - el `implement` original con `code-review`;
-- la lección extra, que no se hace en la sesión y puede no estar lista el 28.
+- la lección extra, que no se hace en la sesión.
 
 **Orden**: Pocock va justo después de Agent mode, como forma de trabajar alternativa al Plan mode. Imágenes y Docling van juntas al final, porque las dos construyen el Engineering Reviewer.
 
@@ -144,7 +144,7 @@ Decisión: [cambios en las lecciones propias](https://github.com/emepetres/copil
 | *Matt Pocock's workflow* | `pocock-workflow/` | Exercise 2 | [Pocock](https://github.com/emepetres/copilot-devdays-workshop/issues/8) | Se presenta como alternativa al Plan mode. Commitea el filtrado y crea `sorting`. Trabaja sobre la issue "Allow users to sort the game list". `implement-lite` llega por `lesson pocock` y no cambia; el `implement` original queda como opción para casa |
 | *A skill that reads images* | `image-skill/` | Exercise 3 | [Imágenes](https://github.com/emepetres/copilot-devdays-workshop/issues/9) | `docs/architecture.png` llega por `lesson images`. `review-diagram` dice explícitamente que su informe en `docs/reviews/architecture-diagram.md` es un entregable pedido |
 | *The Engineering Reviewer with Docling MCP* | `engineering-reviewer/` | *A skill that reads images* | [Docling](https://github.com/emepetres/copilot-devdays-workshop/issues/10) | Los PDF llegan por `lesson docling`, en inglés y con nombres en inglés. Se **añade** una entrada `docling` a `.vscode/mcp.json`: se muestra solo ese bloque y no se asume si existe `astro-docs`. Si VS Code no encuentra el servidor, se usa la ruta de `check`. Lleva un recuadro de 3–4 líneas sobre qué es un MCP, por si se saltó Exercise 3. El informe se declara entregable pedido |
-| *Extra: orchestration in code* | `extra-orchestration/` | *The Engineering Reviewer…* (en casa) | [Extra](https://github.com/emepetres/copilot-devdays-workshop/issues/11) | `reviewer/` llega por `lesson extra`. Se construye la última y puede no estar lista el 28 |
+| *Extra: orchestration in code* | `extra-orchestration/` | *The Engineering Reviewer…* (en casa) | [Extra](https://github.com/emepetres/copilot-devdays-workshop/issues/11) | `reviewer/` llega por `lesson extra`. El agente de diagrama ve el PNG con la herramienta `view`, como la skill, y no como adjunto: en `SequentialBuilder` el adjunto llegaría a los tres agentes. Ningún agente escribe: el programa guarda la respuesta del sintetizador como informe. Sin plan B: `GitHubCopilotAgent` funciona dentro de `SequentialBuilder` |
 
 ## 7. Inconsistencias sembradas
 

@@ -1,0 +1,12 @@
+[project]
+name = "reviewer"
+version = "0.1.0"
+description = "The Engineering Reviewer of Tailspin Toys, as three GitHub Copilot agents in a row."
+requires-python = ">=3.11"
+dependencies = [
+    "agent-framework-github-copilot==2.1.0",
+    "agent-framework-orchestrations==1.4.0",
+]
+
+[tool.uv]
+package = false

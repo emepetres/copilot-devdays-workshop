@@ -122,6 +122,24 @@ test('the docling lesson brings the seeded documents in English, with their conv
   assert.match(text(SEEDED_DOCUMENTS['docs/meeting-minutes.pdf']), /scale of 1 to 10/); // 6
 });
 
+test('the extra lesson brings the reviewer/ uv project, pinned, with the example agent and the TODOs', () => {
+  const dir = tailspinRepo();
+  const { status, stdout } = run(['lesson', 'extra'], dir);
+  assert.equal(status, 0);
+  for (const file of ['reviewer/pyproject.toml', 'reviewer/uv.lock', 'reviewer/review.py']) {
+    assert.match(stdout, new RegExp(`copied\\s+${file.replaceAll('.', '\\.')}`));
+    assert.ok(readFileSync(join(dir, file)).equals(readFileSync(join(LESSONS, 'extra', file))), file);
+  }
+  // Issue #11: the Copilot integration is pinned to 2.1.x, and every package to an exact version.
+  const pyproject = readFileSync(join(dir, 'reviewer/pyproject.toml'), 'utf8');
+  assert.match(pyproject, /"agent-framework-github-copilot==2\.1\.\d+"/);
+  assert.match(pyproject, /"agent-framework-orchestrations==\d+\.\d+\.\d+"/);
+  const review = readFileSync(join(dir, 'reviewer/review.py'), 'utf8');
+  assert.match(review, /skill\("review-diagram"\)/, 'the example agent loads its skill');
+  assert.match(review, /"model": "auto"/);
+  assert.match(review, /# TODO 3: chain .* with SequentialBuilder/);
+});
+
 test('usage lists setup, warmup and check', () => {
   const { stdout } = run(['--help']);
   assert.match(stdout, /^\s+setup\s/m);
